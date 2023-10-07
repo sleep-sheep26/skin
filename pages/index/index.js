@@ -7,6 +7,7 @@ Page({
    */
   data: {
     navH: 0,
+    //存放轮播图的数据
     rotationList:[
       '../../assets/images/rotation/man.jpg',
       '../../assets/images/rotation/student.jpg',
@@ -36,12 +37,6 @@ Page({
         text:"专业知识"
       },
     ],
-    testImage:[
-      'https://fishei.cn/static/pic/404.jpg',
-      'https://fishei.cn/static/pic/500.jpg',
-      'https://fishei.cn/static/pic/404.jpg',
-      'https://fishei.cn/static/pic/500.jpg',
-    ]
   },
 
   /**
@@ -51,7 +46,23 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
+    this.getSwiperList()
   },
+
+  //获取轮播图数据的方法
+  getSwiperList(){
+    wx.request({
+      url: 'http://127.0.0.1:81/community/rotation/list/all',
+      method:'GET',
+      success:(res)=>{
+        console.log(res)
+        this.setData({
+          rotationList:res.data
+        })
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

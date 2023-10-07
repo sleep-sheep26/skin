@@ -1,9 +1,5 @@
 {
   "description": "项目配置文件",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "setting": {
     "urlCheck": false,
     "es6": true,
@@ -23,7 +19,6 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -39,8 +34,6 @@
     "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.25.3",
-  "projectname": "zafuBBS",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
@@ -82,5 +75,11 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "libVersion": "2.25.3",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx5f0717ae81576243"
 }
