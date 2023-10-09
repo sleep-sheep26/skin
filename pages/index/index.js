@@ -1,3 +1,6 @@
+const { httpGet } = require("../../utils/http");
+
+
 // pages/index/index.js
 var app = getApp()
 Page({
@@ -14,7 +17,6 @@ Page({
       '../../assets/images/rotation/test1.jpg',
       '../../assets/images/rotation/test2.jpg',
       '../../assets/images/rotation/test3.jpg',
-      
     ],
     swiperCurrent: 0,
 
@@ -51,11 +53,10 @@ Page({
 
   //获取轮播图数据的方法
   getSwiperList(){
-    wx.request({
-      url: 'http://127.0.0.1:81/community/rotation/list/all',
-      method:'GET',
+    httpGet({
+      uri: '/community/rotation/list/enabled',
       success:(res)=>{
-        console.log(res)
+        console.log('rotation', res)
         this.setData({
           rotationList:res.data
         })
