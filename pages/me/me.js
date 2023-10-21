@@ -1,3 +1,6 @@
+const { httpPost } = require("../../utils/http");
+const { fastLogin, getToken } = require("../../utils/login");
+
 // pages/me/me.js
 var app = getApp()
 Page({
@@ -6,7 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navH: 0
+    navH: 0,
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
   },
 //发起GET数据请求
 
@@ -14,11 +20,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let hasUserInfo = getToken() === undefined? false  : true
     this.setData({
-      navH: app.globalData.navHeight
+      navH: app.globalData.navHeight,
+      hasUserInfo
     });
   },
+  getUserProfile(){
 
+    
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

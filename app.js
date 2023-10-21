@@ -1,5 +1,7 @@
 const { fastLogin } = require("./utils/login");
 
+console.log('wx', wx)
+
 //app.js
 App({
   globalData: {
@@ -23,7 +25,9 @@ App({
         console.log(err);
       }
     })
+    wx.clearStorage()
     fastLogin()
+
 
 
 /*
@@ -53,5 +57,6 @@ App({
       }
   })*/
   },
+
   
 })

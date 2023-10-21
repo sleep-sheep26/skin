@@ -1,32 +1,47 @@
 function httpRequest(http){
   // 请求头追加token
-/*
-  // TODO OnLunch时App实例尚未创建
-  if (!'$token' in getApp()){
+  if (wx.$token === undefined) {
     wx.getStorage({
       key: 'token',
-      encrypt: true,
       success: (token)=>{
-        getApp().$token = token
-        http.header.Authorization = 'Bearer '+ token
-      }
+        console.log('getStorage---token---success', token)
+        if(token.data !== undefined){
+          if(http.header === undefined){
+            http.header = {Authorization: 'Bearer ' + token.data}
+          }else{
+            http.header.Authorization = 'Bearer ' + token.data
+          }
+        }
+      },
+      /*
+      complete:(token)=>{
+        console.log('getStorage---token---complete', token)
+        if(token.data !== undefined){
+          if(http.header === undefined){
+            http.header = {Authorization: 'Bearer ' + token.data}
+          }else{
+            http.header.Authorization = 'Bearer ' + token.data
+          }
+        }
+      }*/
     })
   }else{
-    http.header.Authorization = 'Bearer '+ getApp().$token
-  }*/
-  wx.getStorage({
-    key: 'token',
-    encrypt: true,
-    success: (token)=>{
-      if(token.data !== undefined){
-        if(http.header === undefined){
-          http.header = {Authorization: 'Bearer ' + token.data}
-        }else{
-          http.header.Authorization = 'Bearer ' + token.data
-        }
-      }
+    if(http.header === undefined){
+      http.header = {Authorization: 'Bearer ' + wx.$token}
+    }else{
+      http.header.Authorization = 'Bearer ' + wx.$token
     }
-  })
+  }
+ 
+  
+  console.log('httpRequest---http', http)
+  /*
+  let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNqqViouTVKyUrIAAyUdpdSKAiUrQ3NTI0tjQxMzi1oAAAAA__8.KauBT5NZ_nq8dmi2bajUm5gajBfvlgie-Wf1aqAOgaQnBTLt_2ipVLEkUORH3CqrBU8dJF1rBgqqlFx3r5ms5w'
+  if(http.header === undefined){
+    http.header = {Authorization: 'Bearer ' + token}
+  }else{
+    http.header.Authorization = 'Bearer ' + token
+  } */
   return wx.request({url: 'https://wolves.vip' + http.uri,...http})
 }
 
@@ -36,6 +51,7 @@ function getRequest(http){
 function postRequest(http){
   return httpRequest({...http, method:'post'})
 }
+
 
 module.exports = {
   httpGet:getRequest,

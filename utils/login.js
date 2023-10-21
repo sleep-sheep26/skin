@@ -9,8 +9,14 @@ function fastLogin(){
       // 成功则存储新token
       if(data.code === 200){
         token = data.data.token
+        console.log('token', token)
+        wx.setStorage({
+          key: 'token',
+          data: token
+        })
+        wx.$userInfo = data.data.token
       }else{
-          console.log('ffffffffffffail', data)
+          console.log('快速登录失败，本地无有效token', data)
           if(data.code === 403){
             // 没有有效token, 开始登录验证
             wx.login({
@@ -21,64 +27,48 @@ function fastLogin(){
                     uri: '/community/user/login/wechat',
                     data: {jsCode: res.code},
                     success: ({data})=>{
-                      console.log('completecompletecompletecomplete', data)
                       if(data.code === 200){
+                        console.log('注册过，直接登录')
+
                         // 已经授权过，响应体直接获取token
                         token = data.data.token
+                        wx.$userInfo = data.data.user
+                        wx.setStorage({
+                          key: 'token',
+                          data: token
+                        })
                         console.log('token', token)
-
                       }else{
-                        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                        console.log('dawffwa测试', data)
-                        wx.getUserProfile({
-                          desc: '测试',
-                          success: (info)=>{
-                            console.log('dawffwa', info)
-                          }
+                        console.log('没注册过，跳转授权')
+                        wx.navigateTo({
+                          url: '/pages/login/login'
                         })
                       }
                     }
                   })
-    /*
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                console.log('success', res)
-                var data = {username:'root', phone:15137610729}
-                wx.getUserProfile({
-                  desc: '测试',
-                  success: (info)={
-                    
-                  }
-                })*/
-             
                 } else {
                   console.log('登录失败！' + res.errMsg)
                 }
                
-                  
-            /*
-              wx.request({
-                  url: 'https://mock.apifox.cn/m1/3005354-0-default/community/user/login/phone',
-                  method: 'POST',
-                  data,
-                  success: ({data}) => {
-                      console.log(data)
-                      if (data.code === 200) {
-                          //console.log("login success", data.msg)
-                          wx.setStorageSync('token', data.data.token)
-                      }
-                  }
-              })*/
               }
-          })
-    
-    
+            })
           }
       }
     }
   })
-  
+}
+
+function getToken(){
+  let token
+  wx.getStorage({
+    key: 'token',
+    encrypt: true,
+    success: (res)=>{token = res}
+  })
+  return token
 }
 
 module.exports = {
-  fastLogin: fastLogin
+  fastLogin: fastLogin,
+  getToken
 }

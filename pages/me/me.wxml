@@ -24,7 +24,7 @@
         <!-- 用户名、标签 -->
         <view class="user-tag">
             <view class="user-name">
-                <text>夏医生</text>
+                <text>{{userInfo}}</text>
             </view>
             <view class="user-flag">
                 <view class="identity">医生认证</view>
@@ -45,7 +45,7 @@
         </view>
     </view>
     <!-- 内容分类 -->
-    <view class="user-detail">
+    <view  class="user-detail" wx:if="">
         <view class="tpye">
             <view class="type-name">我的帖子</view>
             <view class="type-num">0</view>

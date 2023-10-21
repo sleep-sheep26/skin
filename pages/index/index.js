@@ -1,4 +1,4 @@
-const { httpGet } = require("../../utils/http");
+const { httpGet, httpPost, httpRequest } = require("../../utils/http");
 
 
 // pages/index/index.js
@@ -53,6 +53,7 @@ Page({
 
   //获取轮播图数据的方法
   getSwiperList(){
+    console.log('pageRouterpageRouterpageRouterpageRouter')
     httpGet({
       uri: '/community/rotation/list/enabled',
       success:(res)=>{
