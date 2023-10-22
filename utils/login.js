@@ -49,7 +49,6 @@ function fastLogin(){
                 } else {
                   console.log('登录失败！' + res.errMsg)
                 }
-               
               }
             })
           }
@@ -58,17 +57,6 @@ function fastLogin(){
   })
 }
 
-function getToken(){
-  let token
-  wx.getStorage({
-    key: 'token',
-    encrypt: true,
-    success: (res)=>{token = res}
-  })
-  return token
-}
-
 module.exports = {
-  fastLogin: fastLogin,
-  getToken
+  fastLogin: fastLogin
 }

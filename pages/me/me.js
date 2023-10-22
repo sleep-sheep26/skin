@@ -1,5 +1,4 @@
-const { httpPost } = require("../../utils/http");
-const { fastLogin, getToken } = require("../../utils/login");
+const { httpPost, httpGet } = require("../../utils/http");
 
 // pages/me/me.js
 var app = getApp()
@@ -20,22 +19,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let hasUserInfo = getToken() === undefined? false  : true
     this.setData({
-      navH: app.globalData.navHeight,
-      hasUserInfo
+      navH: app.globalData.navHeight
     });
   },
-  getUserProfile(){
-
-    
+  updateUserInfo(){
+    httpGet({uri:'/community/user/', 
+      success:({data})=>{
+        console.log('个人信息(服务器)', data)
+        if (data.code === 200) {
+          wx.setStorageSync('userInfo', data.data)
+          this.setData({
+            userInfo: data.data
+          })
+        }
+      }
+    })
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.updateUserInfo()
   },
 
   /**
@@ -63,7 +69,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.updateUserInfo()
   },
 
   /**
@@ -78,5 +84,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
 })

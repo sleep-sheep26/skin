@@ -19,12 +19,12 @@
   <view class="top">
     <view class="user-info">
         <view class="user-photo">
-            <image src=".././../assets/images/common/anonymous.png"></image>
+            <image src="{{userInfo.avatar}}"></image>
         </view>
         <!-- 用户名、标签 -->
         <view class="user-tag">
             <view class="user-name">
-                <text>{{userInfo}}</text>
+                <text>{{userInfo.nickName}}</text>
             </view>
             <view class="user-flag">
                 <view class="identity">医生认证</view>

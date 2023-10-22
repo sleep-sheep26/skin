@@ -6,8 +6,7 @@ Page({
   data: {
     remind: '加载中',
     angle: 0,
-    jsCode: '',
-    userInfo: {}
+    jsCode: ''
   },
   getUserProfile: function() {
     // 开始登录验证
@@ -30,11 +29,7 @@ Page({
                     success:({data})=>{
                       console.log('个人信息(服务器)', data)
                       if (data.code === 200) {
-
-                        this.setData({
-                          hasUserInfo: true,
-                          userInfo: data.data
-                        })
+                        wx.setStorageSync('userInfo', data.data)
                         wx.switchTab({
                           url: '/pages/index/index',
                         });

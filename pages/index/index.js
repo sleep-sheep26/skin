@@ -48,19 +48,19 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
-    this.getSwiperList()
   },
 
   //获取轮播图数据的方法
   getSwiperList(){
-    console.log('pageRouterpageRouterpageRouterpageRouter')
     httpGet({
       uri: '/community/rotation/list/enabled',
-      success:(res)=>{
-        console.log('rotation', res)
-        this.setData({
-          rotationList:res.data
-        })
+      success:({data})=>{
+        console.log('rotation', data)
+        if (data.code === 200) {
+          this.setData({
+            rotationList:data.data
+          })
+        }
       }
     })
   },
@@ -70,7 +70,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getSwiperList()
   },
 
   /**
