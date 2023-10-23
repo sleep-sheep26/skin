@@ -1,4 +1,4 @@
-const { fastLogin } = require("./utils/login");
+//const { fastLogin } = require("./utils/login");
 //app.js
 App({
   globalData: {
@@ -22,6 +22,6 @@ App({
         console.log(err);
       }
     })
-    fastLogin()
+    //fastLogin()
   },
 })

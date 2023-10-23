@@ -56,7 +56,8 @@ function fastLogin(){
     }
   })
 }
-
+/*
 module.exports = {
   fastLogin: fastLogin
 }
+*/
