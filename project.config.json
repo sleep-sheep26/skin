@@ -31,7 +31,8 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "condition": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": false,
+    "ignoreDevUnusedFiles": false
   },
   "compileType": "miniprogram",
   "simulatorType": "wechat",

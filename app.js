@@ -1,11 +1,4 @@
 const { fastLogin } = require("./utils/login");
-
-let globalData = {
-
-  token: '',
-  // 用户信息
-  userInfo: {}
-}
 //app.js
 App({
   globalData: {

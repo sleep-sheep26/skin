@@ -1,4 +1,7 @@
+
+
 function httpRequest(http){
+  //console.log('axios', axios)
   // 请求头追加token
   if (wx.$token === undefined || wx.$token === '') {
     let token = wx.getStorageSync('token')

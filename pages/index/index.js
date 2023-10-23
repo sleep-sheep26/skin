@@ -1,5 +1,9 @@
 const { httpGet, httpPost, httpRequest } = require("../../utils/http");
+import axios from 'axios'
+import mpAdapter from 'axios-miniprogram-adapter'
+axios.defaults.adapter = mpAdapter
 
+console.log('axios', axios)
 
 // pages/index/index.js
 var app = getApp()
