@@ -40,7 +40,7 @@ function fastLogin(){
                         console.log('token', token)
                       }else{
                         console.log('没注册过，跳转授权')
-                        wx.navigateTo({
+                        wx.redirectTo({
                           url: '/pages/login/login'
                         })
                       }

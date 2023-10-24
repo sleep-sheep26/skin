@@ -17,7 +17,7 @@ Page({
           if(info.userInfo){
             console.log('info.userInfo', info.userInfo)
             httpPost({
-              uri: '/community/user/register/wechat',
+              url: '/community/user/register/wechat',
               data:{...info.userInfo, jsCode: this.data.jsCode},
               success:({data})=>{
                  console.log('注册info.userInfo.success', data)
@@ -25,7 +25,7 @@ Page({
                 if(data.code === 200){
                   wx.$token = data.data.token
                   wx.setStorageSync('token', wx.$token)
-                  httpGet({uri:'/community/user/', 
+                  httpGet({url:'/community/user/', 
                     success:({data})=>{
                       console.log('个人信息(服务器)', data)
                       if (data.code === 200) {

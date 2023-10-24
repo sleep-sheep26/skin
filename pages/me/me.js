@@ -24,7 +24,7 @@ Page({
     });
   },
   updateUserInfo(){
-    httpGet({uri:'/community/user/', 
+    httpGet({url:'/community/user/', 
       success:({data})=>{
         console.log('个人信息(服务器)', data)
         if (data.code === 200) {
