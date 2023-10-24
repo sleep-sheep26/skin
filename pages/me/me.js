@@ -24,15 +24,13 @@ Page({
     });
   },
   updateUserInfo(){
-    httpGet({uri:'/community/user/', 
-      success:({data})=>{
-        console.log('个人信息(服务器)', data)
-        if (data.code === 200) {
-          wx.setStorageSync('userInfo', data.data)
-          this.setData({
-            userInfo: data.data
-          })
-        }
+    httpGet({url:'/community/user/'}).then(({data})=>{
+      console.log('个人信息(服务器)', data)
+      if (data.code === 200) {
+        wx.setStorageSync('userInfo', data.data)
+        this.setData({
+          userInfo: data.data
+        })
       }
     })
   },

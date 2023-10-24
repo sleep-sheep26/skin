@@ -71,10 +71,10 @@ async function httpRequest(http){
   //console.log('axios', axios)
   // 请求头追加token
   if (isNotEmpty(token = wx.$token) || isNotEmpty(token = wx.getStorageSync('token'))) {
-    if(http.header === undefined){
-      http.header = {Authorization: 'Bearer ' + token}
+    if(http.headers === undefined){
+      http.headers = {Authorization: 'Bearer ' + token}
     }else{
-      http.header.Authorization = 'Bearer ' + token
+      http.headers.Authorization = 'Bearer ' + token
     }
   }else{
     let isEmitFastLogin = true
@@ -87,10 +87,10 @@ async function httpRequest(http){
     }
     if (isEmitFastLogin) {
       token = await fastLogin()
-      if(http.header === undefined){
-        http.header = {Authorization: 'Bearer ' + token}
+      if(http.headers === undefined){
+        http.headers = {Authorization: 'Bearer ' + token}
       }else{
-        http.header.Authorization = 'Bearer ' + token
+        http.headers.Authorization = 'Bearer ' + token
       }
     }
   }

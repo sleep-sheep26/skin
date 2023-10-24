@@ -57,14 +57,13 @@ Page({
   //获取轮播图数据的方法
   getSwiperList(){
     httpGet({
-      url: '/community/rotation/list/enabled',
-      success:({data})=>{
-        console.log('rotation', data)
-        if (data.code === 200) {
-          this.setData({
-            rotationList:data.data
-          })
-        }
+      url: '/community/rotation/list/enabled'
+    }).then(({data})=>{
+      console.log('rotation', data)
+      if (data.code === 200) {
+        this.setData({
+          rotationList:data.data
+        })
       }
     })
   },

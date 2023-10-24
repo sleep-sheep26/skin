@@ -4,7 +4,7 @@ const { httpGet, httpPost } = require("./http");
 function fastLogin(){
   let token
   httpGet({
-    uri: '/community/user/check/wechat', 
+    url: '/community/user/check/wechat', 
     success:({data})=>{
       // 成功则存储新token
       if(data.code === 200){
@@ -24,7 +24,7 @@ function fastLogin(){
                 if (res.code) {
                   // 先判断是否授权过
                   httpPost({
-                    uri: '/community/user/login/wechat',
+                    url: '/community/user/login/wechat',
                     data: {jsCode: res.code},
                     success: ({data})=>{
                       if(data.code === 200){
