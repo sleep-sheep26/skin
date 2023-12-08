@@ -1,4 +1,6 @@
 // pages/me/me.js
+
+const { httpGet } = require("../../utils/http");
 var app = getApp()
 Page({
 
@@ -44,7 +46,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({userInfo: wx.getStorageSync('userInfo')}) 
+    let info = wx.getStorageSync('userInfo')
+    if(info === ''){
+      this.updateUserInfo()
+    }else{
+      this.setData({userInfo: wx.getStorageSync('userInfo')}) 
+    }
   },
 
   /**
