@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:{},
     navH: 0
   },
 //发起GET数据请求
@@ -17,6 +18,19 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
+  },
+  updateUserInfo(){
+    httpGet({url:'/community/user/', 
+      success:({data})=>{
+        console.log('个人信息(服务器)', data)
+        if (data.code === 200) {
+          wx.setStorageSync('userInfo', data.data)
+          this.setData({
+            userInfo: data.data
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -30,7 +44,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({userInfo: wx.getStorageSync('userInfo')}) 
   },
 
   /**

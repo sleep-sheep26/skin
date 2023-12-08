@@ -23,7 +23,7 @@
             <!-- 轮播图图片 -->
             <swiper-item class="bbs-swiper-item" wx:for="{{rotationList}}" wx:key="index">
             <!-- 加上widthFix可以使图片自适应 -->
-            <image src="{{item}}"></image>
+            <image src="{{item.url}}"></image>
             </swiper-item>
         </swiper>
         <!-- 定制轮播图dots -->

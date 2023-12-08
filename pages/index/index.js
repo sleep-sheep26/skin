@@ -1,7 +1,8 @@
 // pages/index/index.js
+const { httpGet, httpPost, httpRequest } = require("../../utils/http");
+
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,12 +10,6 @@ Page({
     navH: 0,
     //存放轮播图的数据
     rotationList:[
-      '../../assets/images/rotation/man.jpg',
-      '../../assets/images/rotation/student.jpg',
-      '../../assets/images/rotation/test1.jpg',
-      '../../assets/images/rotation/test2.jpg',
-      '../../assets/images/rotation/test3.jpg',
-      
     ],
     swiperCurrent: 0,
 
@@ -46,19 +41,20 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
-    this.getSwiperList()
   },
 
   //获取轮播图数据的方法
   getSwiperList(){
-    wx.request({
-      url: 'http://wolves.vip::81/community/rotation/list/all',
-      method:'GET',
-      success:(res)=>{
-        console.log(res)
-        this.setData({
-          rotationList:res.data
-        })
+    httpGet({
+      url: '/community/rotation/list/enabled',
+      success:({data})=>{
+        console.log('rotation', data)
+        if (data.code === 200) {
+          this.setData({
+            rotationList:data.data
+          })
+          console.log(this.rotationList)
+        }
       }
     })
   },
@@ -68,14 +64,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+ 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getSwiperList()
   },
 
   /**
@@ -112,15 +108,14 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //轮播图改变事件
-  swiperChange: function (e) {
-    if (e.detail.source === 'touch'){
-      this.setData({
-        swiperCurrent: e.detail.current
-      })
-    }
-  },
-
+    //轮播图改变事件
+    swiperChange: function (e) {
+      if (e.detail.source === 'touch'){
+        this.setData({
+          swiperCurrent: e.detail.current
+        })
+      }
+    },
   adddetial: function () {
  
     wx.navigateTo({

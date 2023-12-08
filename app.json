@@ -8,6 +8,7 @@
     "pages/send/send",
     "pages/article/article",
     "pages/article-detail/article-detail",
+    "pages/login/login",
     "pages/photo/photo"
   ],
   "window": {
