@@ -15,12 +15,6 @@
           "scene": null
         },
         {
-          "name": "pages/article/article",
-          "pathName": "pages/article/article",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/send/send",
           "pathName": "pages/send/send",
           "query": "",
@@ -41,6 +35,20 @@
         {
           "name": "",
           "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/message/message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/photo/photo",
           "query": "",
           "launchMode": "default",
           "scene": null

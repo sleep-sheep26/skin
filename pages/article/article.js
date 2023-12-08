@@ -1,5 +1,4 @@
 // pages/article/article.js
-
 var app = getApp()
 Page({
 
@@ -22,7 +21,6 @@ Page({
     imageList: [],
     video:{},
     anonymous: false
-    
   },
 
   /**
@@ -206,6 +204,13 @@ Page({
     this.setData({
       topic
     })
+  },
+  backToIndex:function(e){
+   wx.navigateBack({
+    delta: 1
+   })
+
+
   }
 
 

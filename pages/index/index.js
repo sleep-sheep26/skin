@@ -1,6 +1,3 @@
-const { httpGet, httpPost, httpRequest } = require("../../utils/http");
-
-
 // pages/index/index.js
 var app = getApp()
 Page({
@@ -17,6 +14,7 @@ Page({
       '../../assets/images/rotation/test1.jpg',
       '../../assets/images/rotation/test2.jpg',
       '../../assets/images/rotation/test3.jpg',
+      
     ],
     swiperCurrent: 0,
 
@@ -48,19 +46,19 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
+    this.getSwiperList()
   },
 
   //获取轮播图数据的方法
   getSwiperList(){
-    httpGet({
-      url: '/community/rotation/list/enabled',
-      success:({data})=>{
-        console.log('rotation', data)
-        if (data.code === 200) {
-          this.setData({
-            rotationList:data.data
-          })
-        }
+    wx.request({
+      url: 'http://wolves.vip::81/community/rotation/list/all',
+      method:'GET',
+      success:(res)=>{
+        console.log(res)
+        this.setData({
+          rotationList:res.data
+        })
       }
     })
   },
@@ -70,14 +68,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
- 
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getSwiperList()
+
   },
 
   /**
@@ -121,5 +119,21 @@ Page({
         swiperCurrent: e.detail.current
       })
     }
+  },
+
+  adddetial: function () {
+ 
+    wx.navigateTo({
+ 
+      url: '../article/article',
+ 
+      success: function (res) { },
+ 
+      fail: function (res) { },
+ 
+      complete: function (res) { },
+ 
+    })
+ 
   },
 })

@@ -23,7 +23,7 @@
             <!-- 轮播图图片 -->
             <swiper-item class="bbs-swiper-item" wx:for="{{rotationList}}" wx:key="index">
             <!-- 加上widthFix可以使图片自适应 -->
-            <image src="{{item.url}}"></image>
+            <image src="{{item}}"></image>
             </swiper-item>
         </swiper>
         <!-- 定制轮播图dots -->
@@ -85,7 +85,7 @@
                                 <text>匿名用户</text>
                             </view>
                             <view class="user-flag">
-                                <view class="article-sort" >最新发布</view>
+                                <view class="article-sort">最新发布</view>
                                 <view class="user-sex">夏同学</view>
                                 <view class="user-level">Lv6</view>
                             </view>
@@ -130,7 +130,11 @@
     </view>
 </view>
 
-
+ 
+<view bindtap='adddetial'>
+      <image class="add_icon" src="../../assets/images/tabbar/edit.png"></image>
+  </view>
+ 
 
 
 

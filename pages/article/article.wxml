@@ -2,6 +2,13 @@
 <view class="nav-wrap" style="height: {{navH*2+20}}px;">
     <!-- 自定义导航栏 -->
     <view class="nav-title" style="line-height: {{navH*2+44}}px;">发帖</view>
+    <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
+            <view class="nav-capsule">
+                <view>
+                    <image class="back-pre" src="../../assets/images/icon/back.png" style="height:35px;width:35px;" bindtap="backToIndex"></image>
+                </view>
+            </view>
+    </view>
 </view>
 <view class="content" style="margin-top:{{navH*4+40}}rpx">
   <view class="content-input">

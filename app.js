@@ -1,11 +1,3 @@
-//const { fastLogin } = require("./utils/login");
-
-let globalData = {
-
-  token: '',
-  // 用户信息
-  userInfo: {}
-}
 //app.js
 App({
   globalData: {
@@ -18,8 +10,7 @@ App({
     }],
     meta: {}
   },
-   onLaunch: function (t) {
-    wx.clearStorage()
+  onLaunch: function (t) {
      // 获取顶部栏信息
      wx.getSystemInfo({
       success: res => {
@@ -29,6 +20,6 @@ App({
         console.log(err);
       }
     })
-    //fastLogin()
   },
+  
 })

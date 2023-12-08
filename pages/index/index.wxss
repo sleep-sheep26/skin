@@ -349,4 +349,12 @@ page {
   font-size: 25rpx;
 }
 
-
+ 
+.add_icon{
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 50px;
+  right: 30px;
+}
+ 

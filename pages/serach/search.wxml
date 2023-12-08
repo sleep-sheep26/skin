@@ -30,7 +30,6 @@
       <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
 		</view>
   </view>
-
 </view>
 
 

@@ -8,7 +8,7 @@
     "pages/send/send",
     "pages/article/article",
     "pages/article-detail/article-detail",
-    "pages/login/login"
+    "pages/photo/photo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,16 +24,16 @@
     "selectedColor": "#6799FF",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "assets/images/tabbar/index.png",
-        "selectedIconPath": "assets/images/tabbar/index.png"
+        "pagePath": "pages/photo/photo",
+        "text": "识别",
+        "iconPath": "assets/images/icon/photo.png",
+        "selectedIconPath": "assets/images/icon/photo.png"
       },
       {
-        "pagePath": "pages/article/article",
-        "text": "发布",
-        "iconPath": "assets/images/tabbar/edit_third.png",
-        "selectedIconPath": "assets/images/tabbar/edit_third.png"
+        "pagePath": "pages/index/index",
+        "text": "社区",
+        "iconPath": "assets/images/tabbar/index.png",
+        "selectedIconPath": "assets/images/tabbar/index.png"
       },
       {
         "pagePath": "pages/me/me",

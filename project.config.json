@@ -68,6 +68,12 @@
           "pathName": "pages/article-detail/article-detail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/photo/photo",
+          "pathName": "pages/photo/photo",
+          "query": "",
+          "scene": null
         }
       ]
     }
@@ -81,5 +87,5 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wx56e1d9db1909d1fb"
+  "appid": "wx5f0717ae81576243"
 }
