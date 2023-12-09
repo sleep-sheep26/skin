@@ -46,8 +46,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let userInfo = wx.getStorageSync('userInfo')
-    if (userInfo === '') {
+    let info = wx.getStorageSync('userInfo')
+    if(info === ''){
       this.updateUserInfo()
     }else{
       this.setData({userInfo: wx.getStorageSync('userInfo')}) 

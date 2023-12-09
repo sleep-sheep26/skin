@@ -1,5 +1,5 @@
 // pages/index/index.js
-const { httpGet, httpPost, httpRequest } = require("../../utils/http");
+const { httpGet } = require("../../utils/http");
 
 var app = getApp()
 Page({
