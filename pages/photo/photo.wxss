@@ -1,0 +1,23 @@
+page {
+  background-color: #ffffff;
+}
+.content {
+  font-size: 30rpx;
+}
+.getPhoto{
+  width: 750rpx; 
+  height: 412rpx; 
+  display: flex; 
+  box-sizing: border-box; 
+  left: 0rpx; top: 0rpx;
+  background-color: rgba(2, 248, 228, 0.397);
+}
+.camera{
+  position: relative; 
+  left: 247rpx; 
+  top: 78rpx; 
+  width: 301rpx; 
+  height: 310rpx; 
+  display: block; 
+  box-sizing: border-box;
+}
