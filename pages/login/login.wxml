@@ -16,7 +16,6 @@
         <view class="confirm-btn">
           <button open-type="getUserInfo" bindtap="getUserProfile" type="primary"> 获取头像昵称 </button>
         </view>
-        <text class="copyright" >@qindiandadudu 贡献本页代码</text>
       </view>
     </view>
   </block>

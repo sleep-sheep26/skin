@@ -126,7 +126,7 @@ Page({
  
       fail: function (res) { },
  
-      complete: function (res) { },
+      complete: function (res) { }
  
     })
  

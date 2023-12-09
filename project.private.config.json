@@ -15,18 +15,6 @@
           "scene": null
         },
         {
-          "name": "pages/send/send",
-          "pathName": "pages/send/send",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/me/me",
-          "pathName": "pages/me/me",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/article-detail/article-detail",
           "pathName": "pages/article-detail/article-detail",
           "query": "",
@@ -49,6 +37,20 @@
         {
           "name": "",
           "pathName": "pages/photo/photo",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/usercenter/person-info/person-info",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/login/login",
           "query": "",
           "launchMode": "default",
           "scene": null

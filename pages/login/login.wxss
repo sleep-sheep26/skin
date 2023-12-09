@@ -59,18 +59,18 @@ page{
 }
 .title{
   position: absolute;
-  top: 30rpx;
+  top: 150rpx;
   left: 50%;
-  width: 600rpx;
-  height: 200rpx;
-  margin-left: -300rpx;
+  width: 690rpx;
+  height: 230rpx;
+  margin-left: -330rpx;
   opacity: 0;
   animation: show 2.5s cubic-bezier(0.19, 1, 0.22, 1) .5s forwards;
 }
 
 .smalltitle{
   position: absolute;
-  top: 50rpx;
+  top: 30rpx;
   left: 50%;
   width: 600rpx;
   height: 200rpx;
@@ -153,13 +153,13 @@ page{
 
 .confirm-btn {
   font-size: 13pt;
-  line-height: 85rpx;
-  height: 85rpx;
-  background: #69C3AA;
+  line-height: 80rpx;
+  height: 80rpx;
+  background: #07c160;
   color: #fff;
   text-align: center;
   border-radius: 100rpx;
-  margin: 40% 20%;
+  margin: 80% 20%;
 }
 .confirm-btn:active {
   opacity: .8;

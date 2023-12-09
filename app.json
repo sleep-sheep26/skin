@@ -2,14 +2,17 @@
   "pages": [
     "pages/index/index",
     "pages/serach/search",
-    "pages/me/me",
-    "pages/square/square",
+    "pages/usercenter/index",
     "pages/message/message",
-    "pages/send/send",
     "pages/article/article",
     "pages/article-detail/article-detail",
     "pages/login/login",
-    "pages/photo/photo"
+    "pages/photo/photo",
+    "pages/usercenter/about-us/about-us",
+    "pages/usercenter/person-info/person-info",
+    "pages/usercenter/user-cases/user-cases",
+    "pages/usercenter/contact-us/contact-us",
+    "pages/usercenter/hole/hole"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,8 +40,8 @@
         "selectedIconPath": "assets/images/tabbar/index.png"
       },
       {
-        "pagePath": "pages/me/me",
-        "text": "我的",
+        "pagePath": "pages/usercenter/index",
+        "text": "个人中心",
         "iconPath": "assets/images/tabbar/my_second.png",
         "selectedIconPath": "assets/images/tabbar/my_second.png"
       }

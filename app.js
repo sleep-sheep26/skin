@@ -3,11 +3,6 @@ App({
   globalData: {
     userInfo: null,
     navHeight: 0,
-    tags: [{
-      text:"表白墙"
-    },{
-      text:"二手交易"
-    }],
     meta: {}
   },
   onLaunch: function (t) {
