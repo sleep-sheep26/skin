@@ -1,6 +1,6 @@
 // pages/me/me.js
-const { httpGet } = require("../../utils/http");
 
+const { httpGet } = require("../../utils/http");
 var app = getApp()
 Page({
 
