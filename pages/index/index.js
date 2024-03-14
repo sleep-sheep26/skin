@@ -44,15 +44,14 @@ Page({
     httpGet({
       url: '/community/topic/page/',
       method: 'GET',
-      param: {
-        page: 1,
+      data: {
+        page: 2,
         limit:10
       },
       success: ({data}) => {
         // 使用从服务器获取的帖子更新页面状态中的帖子数据
         data.data.list.forEach(element => {
           element.createTime = new Date(element.createTime).toLocaleDateString()
-          console.log('success:', element)
         });
 
         this.setData({
@@ -156,9 +155,9 @@ Page({
 
 // 跳转到详情页面
 navigateToDetail: function (event) {
-  const post = event.currentTarget.dataset.posts; // 获取点击的帖子信息
+  const dataset = event.currentTarget.dataset; // 获取点击的帖子信息
   wx.navigateTo({
-    url: '/pages/article-detail/article-detail?postId=' + post.id,
+    url: '/pages/article-detail/article-detail?postId=' + dataset.topicid,
   });
 }
 })

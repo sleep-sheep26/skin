@@ -1,3 +1,5 @@
+const { httpGet } = require("../../utils/http");
+
 // pages/article-detail/article-detail.js
 var app = getApp()
 Page({
@@ -13,22 +15,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const postId = options.postId; // 获取传递过来的帖子ID
+    const topicId = options.postId; // 获取传递过来的帖子ID
+    console.log(options)
     this.setData({
       navH: app.globalData.navHeight
     });
-    wx.request({
-      url: 'https://wolves.vip/api/posts/' + postId,  //*****************/
+    httpGet({
+      url: '/community/topic/' + topicId,  //*****************/
       success: (res) => {
-        const postDetail = res.data; // 获取到的帖子详情数据
+        let postDetail = res.data.data
+        postDetail.createTime = new Date(postDetail.createTime).toLocaleDateString()
+        postDetail.comments.forEach(element => {
+          element.createTime = new Date(element.createTime).toLocaleDateString()
+        });
         // 渲染帖子详情到页面中
         this.setData({
-          postDetail: postDetail
+          postDetail  // 获取到的帖子详情数据
         });
       },
       fail: (err) => {
         console.error('请求失败', err);
-      }
+      },
     });
   },
 

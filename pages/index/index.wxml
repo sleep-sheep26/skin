@@ -68,8 +68,8 @@
     </view>
     
     <!-- 分类具体的内容 -->
-    <view class="sort-content" bindtap="navigateToDetail">
-        <block wx:for="{{posts}}" wx:key="index" > 
+    <view class="sort-content"   >
+        <view wx:for="{{posts}}" bind:tap="navigateToDetail" data-topicId="{{item.topicId}}" wx:key="topicId" > 
             <view class="sort-content-item">
                 <view class="sort-content-top" >
                     <!-- 用户信息（头像、用户名等） -->
@@ -120,7 +120,7 @@
                     </view>
                 </view>
             </view>
-        </block>
+        </view>
     </view>
 </view>
 

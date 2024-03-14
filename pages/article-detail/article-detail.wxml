@@ -7,15 +7,15 @@
     <view class="sort-content-top" >
         <view class="user-info">
             <view class="user-photo">
-                <image src="{{postDetail.avatar}}" mode="widthFix"></image>
+                <image src="{{postDetail.user.avatar}}" mode="widthFix"></image>
             </view>
             <view class="user-detail">
                 <view class="user-name">
-                    <text>{{postDetail.username}}</text>
+                    <text>{{postDetail.user.nickName}}</text>
                 </view>
                 <view class="user-flag">
-                    <view class="article-sort">{{postDetail.sort}}</view>
-                    <view class="user-sex">{{postDetail.sex}}</view>
+                    <view class="article-sort">{{postDetail.location.locationName}}</view>
+                    <view class="user-sex">{{postDetail.user.sex === 0 ? '女' : '男'}}</view>
                 </view>
             </view>
             <view class="post-detail">
@@ -47,15 +47,15 @@
     <view class="sort-content-bottom">
         <view class="like">
             <image src="../../assets/images/article/unlike.png" class="bottom-img"></image>
-            <text class="action-desc">点赞</text>
+            <text class="action-desc">{{postDetail.likes}}</text>
         </view>
         <view class="collect">
             <image src="../../assets/images/article/collect.png" class="bottom-img"></image>
-            <text class="action-desc">收藏</text>
+            <text class="action-desc">{{postDetail.collect}}</text>
         </view>
         <view class="share">
             <image src="../../assets/images/article/share.png" class="bottom-img"></image>
-            <text class="action-desc">评论</text>
+            <text class="action-desc">{{postDetail.comments.length}}</text>
         </view>
     </view>
   </view>
@@ -64,7 +64,7 @@
       <view class="first-tag">
         <view class="comment-img">
           <image src="../../assets/images/article/comment-y.png"></image>
-          <text>10条评论</text> 
+          <text>{{postDetail.comments.length}}条评论</text> 
         </view>
       </view>
       <view class="directing">
@@ -74,14 +74,14 @@
         <view class="sort-content-top-mini" >
           <view class="user-info-mini">
               <view class="user-photo-mini">
-                  <image src="{{item.user-photo-mini}}" mode="widthFix"></image>
+                  <image src="{{item.user.avatar}}" mode="widthFix"></image>
               </view>
               <view class="user-detail-mini">
                   <view class="user-name-mini">
-                      <text>{{item.username}}</text>
+                      <text>{{item.user.nickName}}</text>
                   </view>
                   <view class="user-flag-mini">
-                      <view class="user-sex-mini">{{item.sex}}</view>         
+                      <view class="user-sex-mini">{{item.user.sex === 0 ? '女' : '男'}}</view>         
                   </view>
               </view>
               <view class="post-detail-mini">
