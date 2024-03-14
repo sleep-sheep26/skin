@@ -75,15 +75,15 @@
                     <!-- 用户信息（头像、用户名等） -->
                     <view class="user-info">
                         <view class="user-photo">
-                            <image src="{{item.avatar}}" mode="widthFix"></image>
+                            <image src="{{item.user.avatar}}" mode="widthFix"></image>
                         </view>
                         <view class="user-detail">
                             <view class="user-name">
-                                <text>{{item.username}}</text>
+                                <text>{{item.user.nickName}}</text>
                             </view>
                             <view class="user-flag">
-                                <view class="article-sort">{{item.sort}}</view>
-                                <view class="user-sex">{{item.sex}}</view>                           
+                                <view class="article-sort">{{item.location.locationName}}</view>
+                                <view class="user-sex">{{item.user.sex === 0 ? '女' : '男'}}</view>                           
                             </view>
                         </view>
                         <view class="post-detail">
@@ -91,7 +91,7 @@
                                 <image src="../../assets/images/common/more.png"></image>
                             </view>
                             <view class="post-time">
-                                <text>{{item.post-time}}</text>
+                                <text>{{ item.createTime}}</text>
                             </view>
                         </view>
                     </view>
@@ -99,7 +99,7 @@
                 <!-- 帖子内容 -->
                 <view class="sort-content-middle">
                     <view class="acticle-text">
-                        <text>{{item.text}}</text>
+                        <text>{{item.content}}</text>
                     </view>
                     <view class="acticle-image">
                         <block wx:for="{{item.image}}" wx:key="index">
@@ -112,11 +112,11 @@
                 <view class="sort-content-bottom">
                     <view class="like">
                         <image src="../../assets/images/article/unlike.png" class="bottom-img"></image>
-                        <text class="num">{{item.like}}</text>
+                        <text class="num">{{item.likes}}</text>
                     </view>
                     <view class="comment">
                         <image src="../../assets/images/article/comment.png" class="bottom-img"></image>
-                        <text class="num">{{item.comment}}</text>
+                        <text class="num">{{item.comments.length}}</text>
                     </view>
                 </view>
             </view>

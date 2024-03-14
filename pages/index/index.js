@@ -41,13 +41,22 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
-    wx.request({
-      url: 'https://www.wolves.vip/ /',
+    httpGet({
+      url: '/community/topic/page/',
       method: 'GET',
-      success: (res) => {
+      param: {
+        page: 1,
+        limit:10
+      },
+      success: ({data}) => {
         // 使用从服务器获取的帖子更新页面状态中的帖子数据
+        data.data.list.forEach(element => {
+          element.createTime = new Date(element.createTime).toLocaleDateString()
+          console.log('success:', element)
+        });
+
         this.setData({
-          posts: res.data,
+          posts: data.data.list,
         });
       },
       fail: (err) => {
