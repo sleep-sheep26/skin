@@ -12,7 +12,6 @@ Page({
     rotationList:[
     ],
     swiperCurrent: 0,
-
     sortList:[
       {
         icon: "../../assets/images/sort/news.png",
@@ -32,6 +31,7 @@ Page({
         text:"专业知识"
       },
     ],
+    posts: [],
   },
 
   /**
@@ -40,6 +40,19 @@ Page({
   onLoad: function (options) {
     this.setData({
       navH: app.globalData.navHeight
+    });
+    wx.request({
+      url: 'https://www.wolves.vip/ /',
+      method: 'GET',
+      success: (res) => {
+        // 使用从服务器获取的帖子更新页面状态中的帖子数据
+        this.setData({
+          posts: res.data,
+        });
+      },
+      fail: (err) => {
+        console.error('获取帖子失败：', err);
+      },
     });
   },
 
@@ -131,4 +144,13 @@ Page({
     })
  
   },
+
+// 跳转到详情页面
+navigateToDetail: function (event) {
+  const post = event.currentTarget.dataset.posts; // 获取点击的帖子信息
+  wx.navigateTo({
+    url: '/pages/article-detail/article-detail?postId=' + post.id,
+  });
+}
 })
+

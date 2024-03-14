@@ -7,26 +7,34 @@ Page({
    */
   data: {
     navH: 0,
-    testImage:[
-      'https://fishei.cn/static/pic/404.jpg',
-      'https://fishei.cn/static/pic/500.jpg',
-      'https://fishei.cn/static/pic/404.jpg',
-      'https://fishei.cn/static/pic/500.jpg',
-    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const postId = options.postId; // 获取传递过来的帖子ID
     this.setData({
       navH: app.globalData.navHeight
+    });
+    wx.request({
+      url: 'https://wolves.vip/api/posts/' + postId,  //*****************/
+      success: (res) => {
+        const postDetail = res.data; // 获取到的帖子详情数据
+        // 渲染帖子详情到页面中
+        this.setData({
+          postDetail: postDetail
+        });
+      },
+      fail: (err) => {
+        console.error('请求失败', err);
+      }
     });
   },
 
   thisImage:function(e){
     let index = e.currentTarget.dataset.imageid;
-    let list = this.data.testImage;
+    let list = this.data.image;
     console.log(list)
     wx.previewImage({
       urls: list,

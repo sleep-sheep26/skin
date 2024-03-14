@@ -34,21 +34,20 @@
         </view>
     </view>
 
+
+ <!-- 实时留言 -->
     <view class="mess_sort">
-        <!-- 实时留言 -->
         <view class="leave-message">
             <image class="message-image" src="../../assets/images/sort/message.png"></image>
             <swiper class="swiper_message" circular vertical autoplay interval="5000" easing-function="easeInOutCubic" >
                 <swiper-item class="swiper-item-message">
-                    <view class="message">
-                        
+                    <view class="message">                 
                         <text class="message-name">非黑即白</text>
                         <text class="message-content">我这个是怎么回事？</text>
                     </view>
                 </swiper-item>
                 <swiper-item class="swiper-item-message">
                     <view class="message">
-                        <!-- <image class="message-image" src="../../assets/images/sort/love-mood.png"></image> -->
                         <text class="message-name">震撼 </text>
                         <text class="message-content">合肥有没有皮肤医院推荐？</text>
                     </view>
@@ -68,26 +67,23 @@
         </scroll-view>   
     </view>
     
-
-
     <!-- 分类具体的内容 -->
-    <view class="sort-content">
-        <block wx:for="{{5}}" wx:key="index" > 
+    <view class="sort-content" bindtap="navigateToDetail">
+        <block wx:for="{{posts}}" wx:key="index" > 
             <view class="sort-content-item">
                 <view class="sort-content-top" >
                     <!-- 用户信息（头像、用户名等） -->
                     <view class="user-info">
                         <view class="user-photo">
-                            <image src="../../assets/images/common/anonymous.png" mode="widthFix"></image>
+                            <image src="{{item.avatar}}" mode="widthFix"></image>
                         </view>
                         <view class="user-detail">
                             <view class="user-name">
-                                <text>匿名用户</text>
+                                <text>{{item.username}}</text>
                             </view>
                             <view class="user-flag">
-                                <view class="article-sort">最新发布</view>
-                                <view class="user-sex">夏同学</view>
-                                <view class="user-level">Lv6</view>
+                                <view class="article-sort">{{item.sort}}</view>
+                                <view class="user-sex">{{item.sex}}</view>                           
                             </view>
                         </view>
                         <view class="post-detail">
@@ -95,21 +91,20 @@
                                 <image src="../../assets/images/common/more.png"></image>
                             </view>
                             <view class="post-time">
-                                <text>2020-08-28 08:30</text>
+                                <text>{{item.post-time}}</text>
                             </view>
-                            
                         </view>
                     </view>
                 </view>
                 <!-- 帖子内容 -->
                 <view class="sort-content-middle">
                     <view class="acticle-text">
-                        <text>测试中.....</text>
+                        <text>{{item.text}}</text>
                     </view>
                     <view class="acticle-image">
-                        <block wx:for="{{testImage}}" wx:key="index">
+                        <block wx:for="{{item.image}}" wx:key="index">
                             <view class="show-image">
-                                <image src="{{item}}" mode="aspectfill"></image>
+                                <image src="{{item.image}}" mode="aspectfill"></image>
                             </view>
                         </block>
                     </view>
@@ -117,20 +112,18 @@
                 <view class="sort-content-bottom">
                     <view class="like">
                         <image src="../../assets/images/article/unlike.png" class="bottom-img"></image>
-                        <text class="num">99</text>
+                        <text class="num">{{item.like}}</text>
                     </view>
                     <view class="comment">
                         <image src="../../assets/images/article/comment.png" class="bottom-img"></image>
-                        <text class="num">99</text>
+                        <text class="num">{{item.comment}}</text>
                     </view>
-                    
                 </view>
             </view>
         </block>
     </view>
 </view>
 
- 
 <view bindtap='adddetial'>
       <image class="add_icon" src="../../assets/images/tabbar/edit.png"></image>
   </view>

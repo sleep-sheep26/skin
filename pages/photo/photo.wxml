@@ -23,7 +23,10 @@
 		</view>
   </view>
 <view class="getPhoto" >
-<image class = "camera" src="../../assets/images/icon/photo.png" bindtap="chooseImage" mode = "widthFix" ></image>
+<image class = "camera" src="../../assets/images/icon/photo.png" bindtap="chooseImage" mode = "widthFix"></image>
  <image src="{{imageUrl}}"/>
 </view>
 </view> 
+<view class ="disklist">
+<text>111111</text>
+</view>

@@ -4,20 +4,47 @@ page {
 .content {
   font-size: 30rpx;
 }
+
 .getPhoto{
-  width: 750rpx; 
-  height: 412rpx; 
+  background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  width: 90%; 
+  height: 312rpx; 
   display: flex; 
   box-sizing: border-box; 
-  left: 0rpx; top: 0rpx;
+  position: fixed; 
+  left: 50%; 
+  top: 38%; 
+  transform: translate(-53%, -50%); 
   background-color: rgba(2, 248, 228, 0.397);
+  order: 1 ;
 }
+
 .camera{
   position: relative; 
-  left: 247rpx; 
-  top: 78rpx; 
-  width: 301rpx; 
-  height: 310rpx; 
+  left: 50%; 
+  top: 50%; 
+  transform: translate(-50%, -50%); 
+  width: 300rpx; 
+  height: 100rpx; 
   display: block; 
   box-sizing: border-box;
+}
+.disklist{
+  display: flex;
+  padding: 15rpx;
+  border: 1rpx solid #efefef;
+  margin: 15rpx;
+  border-radius: 8rpx;
+  box-shadow: 1rpx 1rpx 15rpx #ddd;
+  position: relative;
 }

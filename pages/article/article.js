@@ -13,14 +13,15 @@ Page({
     },
     topic:{
       sorts:
-      ["问题求助", "经验分享", "专业知识","闲聊杂谈"],
-    selected:0
+      ["问题求助", "经验分享", "专业知识"],
+    selectd:0
     },
     content:"",
     location: "",
     imageList: [],
     video:{},
-    anonymous: false
+    anonymous: false,
+    request_url: 'https://www.wolves.vip',
   },
 
   /**
@@ -50,7 +51,8 @@ Page({
     this.setData({content: e.detail.value})
   },
 
-  // 清空照片或者图片
+
+  // 清空图片或视频
   clearInput: function(name){
     if (name != 'imageList') {
       this.setData({ imageList: [] })
@@ -60,7 +62,9 @@ Page({
     }
   },
 
-  // 选择照片
+
+
+  // 照片相关处理
   chooseImage: function(e){
     var that = this;
     let surplus = 9 - this.data.imageList.length
@@ -78,6 +82,8 @@ Page({
     })
   },
 
+
+
   addNewImage(imagePath){
     var list = this.data.imageList
     list = list.concat(imagePath)
@@ -85,6 +91,8 @@ Page({
       imageList: list
     })
   },
+
+
 
   thisImage:function(e){
     let index = e.currentTarget.dataset.imageid;
@@ -95,6 +103,7 @@ Page({
     })
   },
 
+
   deleteImage: function(e){
     let index = e.currentTarget.dataset.imageid;
     let list = this.data.imageList;
@@ -104,7 +113,27 @@ Page({
     })
   },
 
-  // 视频相关
+  upImage: function() {
+    var that = this;
+    var imageList = that.data.imageList;
+    for (var i = 0; i < imageList.length; i++) {
+      wx.uploadFile({
+        url: that.data.request_url + '/upload_image', // 替换成服务器上传图片的接口地址
+        filePath: imageList[i],
+        name: 'image', // 与服务器约定的字段名
+        success(res) {
+          // 上传成功后的处理逻辑
+          console.log('图片上传成功', res.data);
+        },
+        fail(err) {
+          // 上传失败后的处理逻辑
+          console.error('图片上传失败', err);
+        }
+      })
+    }
+  },
+
+  // 视频相关处理
   chooseVideo: function(e){
     wx.chooseVideo({
       sourceType: ['album', 'camera'],
@@ -129,27 +158,7 @@ Page({
   },
 
   // 获取地理位置
-
-  getCityName(address) {
-    let city = undefined
-    if (address) {
-      let index0 = address.indexOf('省')
-      let index1 = address.indexOf('市')
-      if (index0 > 0 && index1 > 0 && index1 > index0 ) {
-        city = address.substring(index0+1, index1+1)
-      } else if (address.includes('北京市')) {
-        city = '北京市'
-      } else if (addr.includes('上海市')) {
-        city = '上海市'
-      } else if (addr.includes('天津市')) {
-        city = '天津市'
-      } else if (addr.includes('重庆市')) {
-        city = '重庆市'
-      }
-    }
-    return city
-  },
-
+  
   chooseLocation:function(e){
     wx.showLoading({
       title: '正在加载',
@@ -160,13 +169,7 @@ Page({
           success: (res) => {},
         })
         let address = ''; 
-        let locName = res.name;
-        let city = this.getCityName(res.address)
-        if(city){
-          address = city + '·' + locName
-        }else{
-          address = locName
-        }
+        address = res.name
         this.setData({
           location: address
         })
@@ -194,7 +197,6 @@ Page({
     })
   },
 
-
   // 发布的类型
   clickTag:function(e){
     console.log(e) 
@@ -205,6 +207,39 @@ Page({
       topic
     })
   },
+
+//上传内容
+  submitData: function() {
+    var that = this;
+    // 获取用户输入的内容
+    var content = that.data.content;
+    // 获取用户选择的地理位置
+    var location = that.data.location;
+    // 获取用户是否匿名状态
+    var anonymous = that.data.anonymous;
+    
+    // 这里编写将以上数据上传至服务器的代码，可以使用 wx.request() 方法发送 POST 请求
+    // 将 content、location、anonymous 等信息作为请求参数发送给服务器
+    wx.request({
+      url: that.data.request_url + '/submit_data', // 替换成服务器提交数据的接口地址
+      method: 'POST',
+      data: {
+        content: content,
+        location: location,
+        anonymous: anonymous
+      },
+      success(res) {
+        // 请求成功后的处理逻辑
+        console.log('数据提交成功', res.data);
+      },
+      fail(err) {
+        // 请求失败后的处理逻辑
+        console.error('数据提交失败', err);
+      }
+    })
+  },
+
+//返回键
   backToIndex:function(e){
    wx.navigateBack({
     delta: 1
