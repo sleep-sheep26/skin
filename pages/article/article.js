@@ -1,4 +1,5 @@
 // pages/article/article.js
+const { uploadFiles } = require("../../utils/http");
 var app = getApp()
 Page({
 
@@ -65,16 +66,35 @@ Page({
 
 
   // 照片相关处理
-  chooseImage: function(e){
+  chooseImage: async function(e){
     var that = this;
     let surplus = 9 - this.data.imageList.length
-    wx.chooseImage({
+    wx.chooseMedia({
       count: surplus,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function(res){
+        console.log('res', res)
         that.clearInput("imageList");
-        that.addNewImage(res.tempFilePaths);
+        let paths = res.tempFiles.map(el => el.tempFilePath)
+        paths.forEach( element =>  {
+          wx.getFileSystemManager().readFile({
+            filePath: element,
+            success(res) {
+              console.log(res)
+              uploadFiles({
+                files:[element],
+                success({data}){
+                  that.addNewImage(JSON.parse(data).data.urls);
+                }
+              })
+             
+            }
+          })
+        });
+
+        console.log('paths', paths)
+        
         wx.showToast({
           title: '上传成功！',
         })
@@ -87,6 +107,7 @@ Page({
   addNewImage(imagePath){
     var list = this.data.imageList
     list = list.concat(imagePath)
+    console.log('imageList', list)
     this.setData({
       imageList: list
     })
@@ -113,7 +134,7 @@ Page({
     })
   },
 
-  upImage: function() {
+  upImage: function(url) {
     var that = this;
     var imageList = that.data.imageList;
     for (var i = 0; i < imageList.length; i++) {

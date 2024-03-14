@@ -1,3 +1,4 @@
+const FormData = require('./formData.js')
 
 const BASIC_URL = 'https://wolves.vip'
 const EXCLUDED_LOGIN_CHECK_URL_PREFIX = ['/community/user/login', '/community/user/check']
@@ -114,6 +115,7 @@ function httpGet(http){
   return httpRequest({...http, method:'get'})
 }
 function httpPost(http){
+  console.log('http', http)
   return httpRequest({...http, method:'post'})
 }
 
@@ -124,10 +126,30 @@ function isEmpty(str){
 function isNotEmpty(str){
   return !isEmpty(str)
 }
+// 参数 obj.files  obj.success
+function uploadFiles(obj){
+  let files = obj.files;
+  console.log('文件上', files)
+
+  let formData = new FormData()
+  files.forEach(element => {
+    formData.appendFile('files', element)
+  });
+  
+  let data = formData.getData()
+  httpPost({
+    url: '/third/upload/form',
+    data: data.buffer,
+    dataType: "其他",
+    header:{'Content-Type': data.contentType},
+    success: obj.success
+  })
+}
 
 module.exports = {
   httpGet,
   httpPost,
   httpRequest,
-  wxLoginPromise
+  wxLoginPromise,
+  uploadFiles
 }
