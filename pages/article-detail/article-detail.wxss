@@ -83,15 +83,13 @@
 
 .acticle-text{
   word-wrap: break-word;
-  font-size: 30rpx;
-  display: -webkit-box;
+  font-size: 33rpx;
+  display: flex;
   text-align: left;
   overflow: hidden;
-  margin-left: 7rpx;
-  /* text-align: center; */
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  letter-spacing: 5rpx;
+  margin-left: 2rpx;
+  flex-direction: column;
+  letter-spacing: 2rpx;
 }
 
 .acticle-image{
@@ -196,6 +194,18 @@
   
 }
 
+.comment-text{
+  word-wrap: break-word;
+  font-size: 28rpx;
+  display: flex;
+  text-align: left;
+  overflow: hidden;
+  margin-left: 10%;
+  flex-direction: column;
+  letter-spacing: 2rpx;
+}
+
+
 .directing{
   height: 10rpx;
 }
@@ -207,6 +217,8 @@
   left: 600rpx;
   top: -20rpx;
 }
+
+
 
 .user-info-mini{
   width: 88%;
@@ -231,10 +243,9 @@
 
 .user-detail-mini{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 2;
-  justify-content: space-between;
-  margin-left: 10rpx;
+  margin-left: 20rpx; 
 }
 
 .user-name-mini{
@@ -245,18 +256,17 @@
 
 .user-flag-mini{
   position: relative;
-  top: -10rpx;
-  display: flex;
-  flex-direction: row;
+  margin-left: 20rpx; 
+  top: -5rpx;
 }
 
 .user-flag-mini view{
   font-weight: 100;
   color: white;
-  font-size: 15rpx;
+  font-size: 20rpx;
   margin-right: 10rpx;
-  padding: 5rpx;
-  border-radius: 4rpx;
+  padding: 6rpx;
+  border-radius: 5rpx;
 }
 
 .article-sort-mini{

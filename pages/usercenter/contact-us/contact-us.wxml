@@ -1,2 +1,22 @@
 <!--pages/usercenter/contact-us/contact-us.wxml-->
-<text>pages/usercenter/contact-us/contact-us.wxml</text>
+<!-- 我的相关内容 -->
+<view class="nav-wrap" style="height: {{navH*2+20}}px;">
+    <!-- 顶部自定义栏 -->
+    <view class="nav-title" style="line-height: {{navH*2+44}}px;">联系我们</view>
+    <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
+        <navigator hoverClass="none" url="/pages/usercenter/index">
+          <view class="nav-capsule">
+                <view>
+                    <image class="back-pre" src="../../../assets/images/icon/back.png" style="height:35px;width:35px;" bindtap="backToIndex"></image>
+                </view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+
+<view class= "show_text">
+<text class="title">联系方式</text> 
+<text  class = "text">电话：17755582316\n QQ:1940812949 </text>
+<view class="bottom-text"><text>版本：开发版\n 2024年3月14日</text></view> 
+</view>

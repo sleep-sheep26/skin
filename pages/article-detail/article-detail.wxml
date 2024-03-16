@@ -1,5 +1,17 @@
 <!--pages/article-detail/article-detail.wxml-->
 
+<view class="nav-wrap" style="height: {{navH*2+20}}px;">
+    <!-- 自定义导航栏 -->
+    <view class="nav-title" style="line-height: {{navH*2+44}}px;">帖子详情</view>
+    <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
+            <view class="nav-capsule">
+                <view>
+                    <image class="back-pre" src="../../assets/images/icon/back.png" style="height:35px;width:35px;" bindtap="backToIndex"></image>
+                </view>
+            </view>
+    </view>
+</view>
+
 <!-- 这里是帖子的详细页 -->
 <view class="content" style="margin-top:{{navH*4+40}}rpx">
   <view class="sort-content-item">
@@ -28,6 +40,7 @@
             </view>
         </view>
     </view>
+
     <!-- 显示包括帖子的文字以及图片内容 -->
     <view class="sort-content-middle">
         <view class="acticle-text">
@@ -64,12 +77,11 @@
       <view class="first-tag">
         <view class="comment-img">
           <image src="../../assets/images/article/comment-y.png"></image>
-          <text>{{postDetail.comments.length}}条评论</text> 
+          <text>共{{postDetail.comments.length}}条评论</text> 
         </view>
       </view>
-      <view class="directing">
-        <image src="../../assets/images/common/directing.png"></image>
-      </view>
+  
+  
       <view class="second-content" wx:for="{{postDetail.comments}}" wx:key="index">
         <view class="sort-content-top-mini" >
           <view class="user-info-mini">
@@ -78,23 +90,25 @@
               </view>
               <view class="user-detail-mini">
                   <view class="user-name-mini">
-                      <text>{{item.user.nickName}}</text>
+                      <text>{{item.user.nickName}}</text> 
                   </view>
                   <view class="user-flag-mini">
                       <view class="user-sex-mini">{{item.user.sex === 0 ? '女' : '男'}}</view>         
                   </view>
               </view>
-              <view class="post-detail-mini">
-                  <view class="handle-mini">
-                      <image src="../../assets/images/common/more.png"></image>
-                      <text>{{item.content}}</text>
-                  </view>
+
+              <view class="post-detail-mini">                       
                   <view class="post-time-mini">
                       <text>{{item.createTime}}</text>
                   </view>
                 </view>
             </view>
         </view>
+          <view class = sort-content-middle>
+          <view class = "comment-text">
+            <text>{{item.content}}</text>
+          </view>
+          </view>
       </view>
   </view>
 </view>

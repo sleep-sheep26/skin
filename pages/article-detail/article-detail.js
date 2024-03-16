@@ -1,6 +1,5 @@
-const { httpGet } = require("../../utils/http");
-
 // pages/article-detail/article-detail.js
+const { httpGet } = require("../../utils/http");
 var app = getApp()
 Page({
 
@@ -21,7 +20,7 @@ Page({
       navH: app.globalData.navHeight
     });
     httpGet({
-      url: '/community/topic/' + topicId,  //*****************/
+      url: '/community/topic/' + topicId,  
       success: (res) => {
         let postDetail = res.data.data
         postDetail.createTime = new Date(postDetail.createTime).toLocaleDateString()
@@ -96,5 +95,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  backToIndex:function(e){
+    wx.navigateBack({
+     delta: 1
+    })
+   }
 })

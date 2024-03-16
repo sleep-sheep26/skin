@@ -256,20 +256,19 @@ page {
   width: 88%;
   margin: auto;
   padding: 10rpx;
-  text-align: center;
 }
 
 .acticle-text{
   word-wrap: break-word;
-  font-size: 30rpx;
+  font-size: 33rpx;
   display: -webkit-box;
   text-align: left;
   overflow: hidden;
   margin-left: 7rpx;
   /* text-align: center; */
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  letter-spacing: 5rpx;
+  letter-spacing: 2rpx;
 }
 
 .acticle-image{

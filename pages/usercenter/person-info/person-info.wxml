@@ -27,13 +27,9 @@
                 <text style="position: relative; left: 0rpx; top: -48rpx">{{userInfo.nickName}}</text>
             </view>
         </view>
-        
     </view>
-    <!-- 内容分类 -->
-    
   </view>
 <!-- 一些本打算开发的功能 -->
-<!-- yourPage.wxml -->
 <view class="bottom">
   <view class="bottom-content">
      <view wx:for="{{menuItems}}" wx:for-item="menuItem" wx:for-index="index" wx:key="index" bind:tap="onTapMenuItem" data-index="{{index}}">
@@ -43,12 +39,5 @@
     </view>
   </view>
 </view>
-
-  <!-- <view class="foot">
-    <view class="copyright">
-        <view>copyright@ZAFU_Fishei</view>
-        <view>2020</view>
-    </view>
-  </view> -->
 </view>
 

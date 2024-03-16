@@ -10,7 +10,7 @@ Page({
     userInfo:{},
     menuItems:[
       {text: '基本信息',path:'/pages/usercenter/person-info/person-info'},
-      {text: '个人病历',path:'/pages/usercenter/user-cases/user-cases'},
+      {text: '历史病历',path:'/pages/usercenter/user-cases/user-cases'},
       {text: '烦恼树洞',path:'/pages/usercenter/hole/hole'},
       {text: '联系我们',path:'/pages/usercenter/contact-us/contact-us'},
       {text: '关于平台',path:'/pages/usercenter/about-us/about-us'},

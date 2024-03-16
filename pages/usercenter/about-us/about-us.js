@@ -1,18 +1,21 @@
-// pages/usercenter/about-us/about-us.js
+// pages/usercenter/hole/hole.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    navH: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      navH: app.globalData.navHeight
+    });
   },
 
   /**
@@ -62,5 +65,12 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  backToIndex:function(e){
+    wx.navigateBack({
+     delta: 1
+    })
   }
 })
+

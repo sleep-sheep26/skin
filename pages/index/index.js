@@ -1,6 +1,5 @@
 // pages/index/index.js
 const { httpGet } = require("../../utils/http");
-
 var app = getApp()
 Page({
   /**
@@ -57,6 +56,7 @@ Page({
         this.setData({
           posts: data.data.list,
         });
+        
       },
       fail: (err) => {
         console.error('获取帖子失败：', err);
@@ -156,6 +156,7 @@ Page({
 // 跳转到详情页面
 navigateToDetail: function (event) {
   const dataset = event.currentTarget.dataset; // 获取点击的帖子信息
+  console.log(dataset);
   wx.navigateTo({
     url: '/pages/article-detail/article-detail?postId=' + dataset.topicid,
   });

@@ -1,1 +1,40 @@
-/* pages/usercenter/contact-us/contact-us.wxss */
+/* pages/usercenter/about-us/about-us.wxss */
+
+.nav-wrap{
+  background-color: rgb(68, 212, 193);
+}
+
+
+.title{
+  font-size: 80rpx;
+  font-weight: 800;
+  color: rgb(68, 212, 193);
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 20px;
+}
+
+
+.show_text{
+    flex-direction: column;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 80vh; /* 设置容器高度为整个视口高度 */
+    
+}
+.text{
+  text-align: center;
+  line-height: 40px;
+}
+
+.bottom-text {
+  position: absolute; /* 设置底部文本为绝对定位 */
+  bottom: 0; /* 将底部文本置于容器的底部 */
+  text-align: center;
+  line-height: 60px;
+}
+
+
+
+

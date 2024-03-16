@@ -1,2 +1,31 @@
-<!--pages/usercenter/user-cases/user-cases.wxml-->
-<text>pages/usercenter/user-cases/user-cases.wxml</text>
+<!-- 我的相关内容 -->
+<view class="nav-wrap" style="height: {{navH*2+20}}px;">
+    <!-- 顶部自定义栏 -->
+    <view class="nav-title" style="line-height: {{navH*2+44}}px;">历史病历</view>
+    <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
+        <navigator hoverClass="none" url="/pages/usercenter/index">
+          <view class="nav-capsule">
+                <view>
+                    <image class="back-pre" src="../../../assets/images/icon/back.png" style="height:35px;width:35px;" bindtap="backToIndex"></image>
+                </view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="content" style="margin-top:{{navH*4+10}}rpx">
+    <!-- 个人信息 -->
+  <view class="top">
+    <view class="user-info">
+        <view class="user-photo">
+            <image src="{{userInfo.avatar}}"></image>
+        </view>
+        <!-- 用户名、标签 -->
+        <view class="user-tag">
+            <view class="user-name">
+                <text style="position: relative; left: 0rpx; top: -48rpx">{{userInfo.nickName}}</text>
+            </view>
+        </view>
+    </view>
+  </view>
+</view>

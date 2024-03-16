@@ -265,8 +265,6 @@ Page({
    wx.navigateBack({
     delta: 1
    })
-
-
   }
 
 
