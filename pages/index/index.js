@@ -44,17 +44,19 @@ Page({
       url: '/community/topic/page/',
       method: 'GET',
       data: {
-        page: 2,
-        limit:10
+        page: 1,
+        limit:10,
+        locationId: 1,
+        sort: 1
       },
       success: ({data}) => {
         // 使用从服务器获取的帖子更新页面状态中的帖子数据
-        data.data.list.forEach(element => {
+        data.data.forEach(element => {
           element.createTime = new Date(element.createTime).toLocaleDateString()
         });
 
         this.setData({
-          posts: data.data.list,
+          posts: data.data,
         });
         
       },

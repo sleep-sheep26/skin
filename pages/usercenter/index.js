@@ -69,7 +69,7 @@ Page({
    */
   onShow: function () {
     let info = wx.getStorageSync('userInfo')
-    if(info === ''){
+    if(info === '' || info === null){
       this.updateUserInfo()
     }else{
       this.setData({userInfo: wx.getStorageSync('userInfo')}) 

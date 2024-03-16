@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function (options) {
     const topicId = options.postId; // 获取传递过来的帖子ID
-    console.log(options)
+    
     this.setData({
       navH: app.globalData.navHeight
     });
