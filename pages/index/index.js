@@ -46,11 +46,12 @@ Page({
       data: {
         page: 1,
         limit:10,
-        locationId: 1,
-        sort: 1
+
+        sort: 3
       },
       success: ({data}) => {
         // 使用从服务器获取的帖子更新页面状态中的帖子数据
+        console.log(data)
         data.data.forEach(element => {
           element.createTime = new Date(element.createTime).toLocaleDateString()
         });

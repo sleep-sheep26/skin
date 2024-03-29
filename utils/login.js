@@ -1,8 +1,12 @@
 const { httpGet, httpPost } = require("./http");
 
 
+function refreshToken() {
+  
+}
+
 function fastLogin(){
-  let token
+  let token /*
   httpGet({
     uri: '/community/user/check/wechat', 
     success:({data})=>{
@@ -21,6 +25,7 @@ function fastLogin(){
             // 没有有效token, 开始登录验证
             wx.login({
               success: (res) => {
+                console.log("id", res)
                 if (res.code) {
                   // 先判断是否授权过
                   httpPost({
@@ -54,7 +59,7 @@ function fastLogin(){
           }
       }
     }
-  })
+  })*/
 }
 
 module.exports = {

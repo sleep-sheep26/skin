@@ -40,15 +40,17 @@ function wxLoginPromise(){
     }); 
   }); 
 } 
+/*
 async function fastLogin(){
   await httpGet({
     url: '/community/user/check/wechat', 
   }).then( (res)=>{
     console.log('wechatwechat---------------------------------', res)
   }, async ()=>{
-    console.log('快速登录失败，本地无有效token')
+    console.log('快速登录失败，本地无有效token--------')
     await wxLoginPromise().then( async(code) => {
-      console.log('jsCode', code)
+      console.log('jsCode1', code)
+
       // 先判断是否授权过
       await httpPost({
         url: '/community/user/login/wechat',
@@ -75,40 +77,104 @@ async function fastLogin(){
   })
 
   return wx.$token
-}
+}*/
 
+function sleep(milliSeconds){
+  var startTime = new Date().getTime(); // get the current time    
+  while (new Date().getTime() < startTime + milliSeconds);
+}
 
 async function httpRequest(http){
   let token
   // 请求头追加token
-  if (isNotEmpty(token =  wx.$token) || isNotEmpty(token = wx.getStorageSync('token'))) {
-    if(http.header === undefined){
-      http.header = {Authorization: 'Bearer ' + token}
-    }else{
-      http.header.Authorization = 'Bearer ' + token
-    }
-  }else{
-    let isEmitFastLogin = true
-        // 获取token
-    for (const key in EXCLUDED_LOGIN_CHECK_URL_PREFIX) {
-      if (http.url.startsWith(EXCLUDED_LOGIN_CHECK_URL_PREFIX[key])) {
-        isEmitFastLogin = false;
-        break
-      }
-    }
-    if (isEmitFastLogin) {
-      token = await fastLogin()
-      if(http.header === undefined){
-        http.header = {Authorization: 'Bearer ' + token}
-      }else{
-        http.header.Authorization = 'Bearer ' + token
-      }
-    }
+  if (isEmpty(token =  wx.$access_token) && isEmpty(token = wx.getStorageSync('access_token'))) {
+    console.log('重新登录http', http)
+    execLogin()
+    
+   
   }
+
+  if(http.header === undefined){
+    http.header = {Authorization: 'Bearer ' + token}
+  }else{
+    http.header.Authorization = 'Bearer ' + token
+  }
+
   if (http.success === undefined && http.fail === undefined && http.complete === undefined) {
     return requestPromise(http)
   }
-  return wx.request({...http, url: 'https://wolves.vip' + http.url})
+
+  console.log('httppppppp', http)
+  let res = wx.request({...http, url: 'https://wolves.vip' + http.url, fail: (a, b, c)=> {
+    console.log(a, b , c)
+  }})
+
+  res.onHeadersReceived((res)=> {
+    console.log("resheader------", res)
+    if (res.statusCode === 200) {
+      let refreshToken
+      if (isNotEmpty(refreshToken =  wx.$refresh_token) || isNotEmpty(refreshToken = wx.getStorageSync('refresh_token'))) {
+        wx.request({
+          method:'POST',
+          header: {Authorization: 'Bearer ' + refreshToken}, 
+          url: 'https://wolves.vip/community/user/login/refresh', 
+          success({data}){
+            console.log("刷新token", data)
+            if (data.code === 403) {
+              wx.$access_token = data.data.access_token
+              wx.setStorage({
+                key: 'access_token',
+                data: wx.$access_token
+              })
+              return httpRequest(http)
+            } else{
+              execLogin()
+            }
+          }
+        })
+      } else{
+        execLogin()
+      }
+    }
+  })
+
+  return res
+}
+
+function execLogin() {
+  wx.login({
+    success: (res) => {
+      console.log("id", res)
+      if (res.code) {
+        wx.request({
+          method: 'POST',
+          url: 'https://wolves.vip/community/user/login/wechat', 
+          data: {'jsCode': res.code},
+          success({data}){
+            if (data.code === 200) {
+              console.log("重新登录", data)
+              wx.$access_token = data.data.access_token
+              wx.$refresh_token = data.data.refresh_token
+              wx.setStorage({
+                key: 'access_token',
+                data: wx.$access_token
+              })
+              wx.setStorage({
+                key: 'refresh_token',
+                data: wx.$refresh_token
+              })
+
+            }
+          }
+        })
+      } else {
+        console.log('微信接口wx.login登录失败！' + res.errMsg)
+      }
+    },
+    fail(re){
+      console.log("fail", re)
+    }
+  })
 }
 
 function httpGet(http){
