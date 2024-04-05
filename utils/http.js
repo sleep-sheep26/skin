@@ -90,8 +90,7 @@ async function httpRequest(http){
   if (isEmpty(token =  wx.$access_token) && isEmpty(token = wx.getStorageSync('access_token'))) {
     console.log('重新登录http', http)
     execLogin()
-    
-   
+    return;
   }
 
   if(http.header === undefined){
@@ -111,7 +110,7 @@ async function httpRequest(http){
 
   res.onHeadersReceived((res)=> {
     console.log("resheader------", res)
-    if (res.statusCode === 200) {
+    if (res.statusCode === 403) {
       let refreshToken
       if (isNotEmpty(refreshToken =  wx.$refresh_token) || isNotEmpty(refreshToken = wx.getStorageSync('refresh_token'))) {
         wx.request({
@@ -142,6 +141,10 @@ async function httpRequest(http){
 }
 
 function execLogin() {
+  wx.navigateTo({
+    url: '/pages/login/login'
+  })
+  /*
   wx.login({
     success: (res) => {
       console.log("id", res)
@@ -174,7 +177,7 @@ function execLogin() {
     fail(re){
       console.log("fail", re)
     }
-  })
+  })*/
 }
 
 function httpGet(http){

@@ -37,34 +37,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      navH: app.globalData.navHeight
-    });
-    httpGet({
-      url: '/community/topic/page/',
-      method: 'GET',
-      data: {
-        page: 1,
-        limit:10,
 
-        sort: 3
-      },
-      success: ({data}) => {
-        // 使用从服务器获取的帖子更新页面状态中的帖子数据
-        console.log(data)
-        data.data.forEach(element => {
-          element.createTime = new Date(element.createTime).toLocaleDateString()
-        });
-
-        this.setData({
-          posts: data.data,
-        });
-        
-      },
-      fail: (err) => {
-        console.error('获取帖子失败：', err);
-      },
-    });
   },
 
   //获取轮播图数据的方法
@@ -77,7 +50,6 @@ Page({
           this.setData({
             rotationList:data.data
           })
-          console.log(this.rotationList)
         }
       }
     })
@@ -96,6 +68,33 @@ Page({
    */
   onShow: function () {
     this.getSwiperList()
+    this.setData({
+      navH: app.globalData.navHeight
+    });
+    httpGet({
+      url: '/community/topic/page/',
+      method: 'GET',
+      data: {
+        page: 1,
+        limit:10,
+        sort: 3
+      },
+      success: ({data}) => {
+        // 使用从服务器获取的帖子更新页面状态中的帖子数据
+        console.log(data)
+        data.data.forEach(element => {
+          element.createTime = new Date(element.createTime).toLocaleDateString()
+        });
+
+        this.setData({
+          posts: data.data,
+        });
+        
+      },
+      fail: (err) => {
+        console.error('获取帖子失败：', err);
+      },
+    });
   },
 
   /**

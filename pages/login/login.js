@@ -16,26 +16,28 @@ Page({
         success: (info)=>{
           if(info.userInfo){
             console.log('info.userInfo', info.userInfo)
-            httpPost({
-              url: '/community/user/register/wechat',
+            wx.request({
+              method:'POST',
+              url: 'https://wolves.vip/community/user/register/wechat',
               data:{...info.userInfo, jsCode: this.data.jsCode},
               success:({data})=>{
                  console.log('注册info.userInfo.success', data)
 
                 if(data.code === 200){
-                  wx.$token = data.data.token
-                  wx.setStorageSync('token', wx.$token)
-                  httpGet({url:'/community/user/', 
-                    success:({data})=>{
-                      console.log('个人信息(服务器)', data)
-                      if (data.code === 200) {
-                        wx.setStorageSync('userInfo', data.data)
-                        wx.switchTab({
-                          url: '/pages/index/index',
-                        });
-                      }
-                    }}
-                  )
+                  wx.$access_token = data.data.access_token
+                  wx.$refresh_token = data.data.refresh_token
+                  wx.setStorage({
+                    key: 'access_token',
+                    data: wx.$access_token
+                  })
+                  wx.setStorage({
+                    key: 'refresh_token',
+                    data: wx.$refresh_token
+                  })
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  });
+
                 }
               }
             })
