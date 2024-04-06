@@ -78,17 +78,10 @@ Page({
         that.clearInput("imageList");
         let paths = res.tempFiles.map(el => el.tempFilePath)
         paths.forEach( element =>  {
-          wx.getFileSystemManager().readFile({
-            filePath: element,
-            success(res) {
-              console.log(res)
-              uploadFiles({
-                files:[element],
-                success({data}){
-                  that.addNewImage(JSON.parse(data).data.urls);
-                }
-              })
-             
+          uploadFiles({
+            files:[element],
+            success({data}){
+              that.addNewImage(JSON.parse(data).data.urls);
             }
           })
         });
