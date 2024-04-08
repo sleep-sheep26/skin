@@ -1,0 +1,37 @@
+<!--pages/serach/search.wxml-->
+<!-- 搜索区的实现 -->
+<view class="nav-wrap" style="height: {{navH*2+20}}px;">
+    <!-- 自定义导航栏 -->
+    <view class="nav-title" style="line-height: {{navH*2+44}}px;">搜一搜</view>
+    <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
+        <view class="nav-capsule">
+            <view bindtap="backLastPage">
+                <image class="back-pre" mode="aspectFill" src="../../assets/images/icon/back.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="content" style="margin-top:{{navH*4+40}}rpx">
+  <view class="search-page">
+    <!-- 搜索框 -->
+    <view class="search-bar">
+        <input class="search-input" type="text" placeholder="请输入搜索内容" bindinput="onInput" bindconfirm="search"/>
+        <button class="search-btn" bindtap="search">搜索</button>
+    </view>
+
+    <!-- 历史搜索 -->
+    <view class="history-search">
+        <view class="title">历史搜索</view>
+        <view class="keywords">
+            <block wx:for="{{historyKeywords}}" wx:key="index">
+                <view class="keyword" bindtap="selectHistory">{{item}}</view>
+            </block>
+        </view>
+    </view>
+</view>
+
+</view>
+
+
+

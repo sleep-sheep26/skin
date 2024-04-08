@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/serach/search",
+    "pages/search/search",
     "pages/usercenter/index",
     "pages/message/message",
     "pages/article/article",
@@ -12,7 +12,8 @@
     "pages/usercenter/person-info/person-info",
     "pages/usercenter/user-cases/user-cases",
     "pages/usercenter/contact-us/contact-us",
-    "pages/usercenter/hole/hole"
+    "pages/usercenter/hole/hole",
+    "pages/search-detail/search-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

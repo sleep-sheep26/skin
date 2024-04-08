@@ -27,6 +27,14 @@ page {
   transform: translate(-53%, -50%); 
   background-color: rgba(2, 248, 228, 0.397);
   order: 1 ;
+  margin-left: 20rpx;
+  width: 710rpx; 
+  height: 412rpx;
+  display: flex; 
+  background: -webkit-linear-gradient(top,rgb(92, 190, 177),#a7e4dc,rgb(184, 230, 220));
+  background-attachment:scroll;
+  border-radius: 50rpx;
+  box-shadow: 5px 5px 5px gainsboro; 
 }
 
 .camera{
