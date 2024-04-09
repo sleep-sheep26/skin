@@ -8,13 +8,13 @@
   </view>
 </view>
 <view class="container">
-  <image class="disease-image" src="{{disease.image}}"></image>
+  <image class="disease-image" src="{{disease.img}}"></image>
   <view class="disease-info">
     <view class="disease-name">{{disease.name}}</view>
     <view class="subtitle">病因：</view>
-    <view class="content">{{disease.cause}}</view>
+    <view class="content">{{disease.etiology}}</view>
     <view class="subtitle">描述：</view>
-    <view class="content">{{disease.description}}</view>
+    <view class="content">{{disease.describe}}</view>
   </view>
 </view>
 

@@ -211,7 +211,10 @@ function uploadFiles(obj){
     data: data.buffer,
     dataType: "其他",
     header:{'Content-Type': data.contentType},
-    success: obj.success
+    success: (res)=>{
+      res.data = JSON.parse(res.data);
+      obj.success(res)
+    }
   })
 }
 

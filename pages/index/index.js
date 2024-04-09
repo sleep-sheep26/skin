@@ -73,7 +73,6 @@ Page({
     });
     httpGet({
       url: '/community/topic/page/',
-      method: 'GET',
       data: {
         page: 1,
         limit:10,

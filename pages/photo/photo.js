@@ -120,15 +120,20 @@ backLastPage: function(){
    updateImage(imagePath) {
     uploadFiles({
       files: [imagePath], // 将图片路径放入文件数组中
-      success: (res) => {
+      success: ({data}) => {
         // 上传图片成功，处理识别结果
-        let result = res.data; // 识别结果
-        console.log('识别结果:', result);
+        let result = data; // 图片上传
+        if (result.code === 200) {
+          console.log('图片上传结果:', result);
         
-        // 跳转到结果页面，并携带识别结果作为关键词传递给结果页面
-        wx.navigateTo({
-          url: '/pages/search-detail/search-detail?keyword=' + encodeURIComponent(result),
-        });
+          // 跳转到结果页面，并携带识别结果作为关键词传递给结果页面
+          wx.navigateTo({
+            url: '/pages/search-detail/search-detail?img=' + result.data.urls[0],
+          });
+        } else{
+          console.log('图片上传失败:', result);
+        }
+
       },
       fail: function (res) {
         console.log(res);
