@@ -22,6 +22,7 @@ page {
   position: relative;
   border-radius: 15rpx;
   overflow: hidden;
+  box-shadow: 5px 5px 5px gainsboro; 
 }
 
 .bbs-swiper-item{
@@ -65,12 +66,12 @@ page {
 /* 留言和分类 */
 .mess_sort{
 
-  width: 100%;
+  width: 95%;
   background-color: rgb(251, 251, 251);
   /* width: 90%; */
-  border-radius: 11%;
-  margin: auto;
-
+  border-radius: 50rpx;
+  margin: 20rpx;
+  box-shadow: 5px 5px 35px 5px gainsboro; 
 }
 
 

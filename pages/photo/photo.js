@@ -1,3 +1,4 @@
+const { uploadFiles } = require("../../utils/http");
 // pages/photo/photo.js
 var app = getApp()
 Page({
@@ -19,7 +20,12 @@ Page({
       navH: app.globalData.navHeight
     });
   },
-
+gotoSearch(){
+  console.log("跳转到搜索页面")
+  wx.navigateTo({
+    url: "/pages/search/search",
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -111,20 +117,25 @@ backLastPage: function(){
       success: (res) => {this.updateImage(res.tempFilePaths[0])}
     })
    },
-   updateImage(imgaePath){
-     wx.uploadFile({
-       filePath: 'filePath',
-       name: 'image',
-       url: 'url',
-     success:(res) =>{
-       this.setData({imageUrl: res.data
-       });
-     },
-     fail: function(res){
-       console.log(res);
-     }
-     })
-   }
+   updateImage(imagePath) {
+    uploadFiles({
+      files: [imagePath], // 将图片路径放入文件数组中
+      success: (res) => {
+        // 上传图片成功，处理识别结果
+        let result = res.data; // 识别结果
+        console.log('识别结果:', result);
+        
+        // 跳转到结果页面，并携带识别结果作为关键词传递给结果页面
+        wx.navigateTo({
+          url: '/pages/search-detail/search-detail?keyword=' + encodeURIComponent(result),
+        });
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+    });
+  }
+  
 })
 
 
