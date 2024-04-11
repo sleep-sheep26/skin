@@ -1,5 +1,5 @@
-<!--pages/search-detail/search-detail.wxml-->
-<view class="nav-title" style="line-height: {{navH*2+44}}px;">详情</view>
+<!-- pages/search-detail/search-detail.wxml -->
+<view class="nav-title" style="line-height: {{navH*2+88}}px;">详情</view>
 <view style="display: flex; justify-content: space-around;flex-direction: column;height:100%;">
   <view class="nav-capsule">
     <view bindtap="backlastPage">
@@ -7,18 +7,14 @@
     </view>
   </view>
 </view>
-<view class="container">
-  <image class="disease-image" src="{{disease.img}}"></image>
-  <view class="disease-info">
-    <view class="disease-name">{{disease.name}}</view>
+<view class="container" wx:if="{{!queryFailed}}">
+<view class="diseaseinfo"> 
+  <view class="disease-name">{{disease.name}}</view>
+  <image class="disease-image" src="{{disease.img}}" mode="aspectFit"></image> 
     <view class="subtitle">病因：</view>
     <view class="content">{{disease.etiology}}</view>
     <view class="subtitle">描述：</view>
     <view class="content">{{disease.describe}}</view>
-  </view>
-</view>
-
-<view class="diseaseinfo">
     <view class="subtitle">临床表现：</view>
     <view class="content">{{disease.clinical}}</view>
     <view class="subtitle">诊断：</view>
@@ -26,5 +22,14 @@
     <view class="subtitle">治疗：</view>
     <view class="content">{{disease.treatment}}</view>
     <view class="subtitle">预防：</view>
-    <view class="content">{{disease.prevention}}</view>
-  </view>
+    <view class="content">{{disease.prevent}}</view>
+</view>
+<view wx:if="{{num > 1}}" class="page-buttons">
+  <button bindtap="prevPage" class="prev-button">上一页</button>
+  <button bindtap="nextPage" class="next-button">下一页</button>
+</view>
+</view>
+
+<view wx:else>
+  <view class="fail-message">查询失败！</view>
+</view>

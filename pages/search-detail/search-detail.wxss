@@ -86,3 +86,12 @@
   line-height: 1.5;
 }
 
+.fail-text {
+  color: rgba(0, 53, 167, 0.822);
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 200px;
+  margin-left: 175px;
+}
+
+
