@@ -23,6 +23,3 @@
  <image src="{{imageUrl}}"/>
 </view>
 </view> 
-<view class ="disklist">
-<text>111111</text>
-</view>

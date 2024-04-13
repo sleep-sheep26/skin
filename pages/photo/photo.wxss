@@ -24,12 +24,12 @@ page {
   position: fixed; 
   left: 50%; 
   top: 38%; 
-  transform: translate(-53%, -50%); 
+  transform: translate(-53%, -20%); 
   background-color: rgba(2, 248, 228, 0.397);
   order: 1 ;
   margin-left: 20rpx;
-  width: 710rpx; 
-  height: 412rpx;
+  width: 80%; 
+  height: 30%;
   display: flex; 
   background: -webkit-linear-gradient(top,rgb(92, 190, 177),#a7e4dc,rgb(184, 230, 220));
   background-attachment:scroll;

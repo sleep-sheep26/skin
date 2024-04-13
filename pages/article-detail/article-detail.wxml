@@ -26,8 +26,11 @@
                     <text>{{postDetail.user.nickName}}</text>
                 </view>
                 <view class="user-flag">
-                    <view class="article-sort">{{postDetail.location.locationName}}</view>
+                    <view class="article-location">{{postDetail.location.locationName}}</view>
                     <view class="user-sex">{{postDetail.user.sex === 0 ? '女' : '男'}}</view>
+                    <block wx:for="{{sortList}}"  wx:key="sortid" >
+                        <view class="article-sort" wx:if= "{{item.sortid === postDetail.sort}}">{{item.text}}</view>                        
+                    </block>
                 </view>
             </view>
             <view class="post-detail">
@@ -35,7 +38,7 @@
                     <image src="../../assets/images/common/more.png"></image>
                 </view>
                 <view class="post-time">
-                    <text>{{postDetail.creatTime}}</text>
+                    <text>{{postDetail.createTime}}</text>
                 </view> 
             </view>
         </view>
@@ -43,9 +46,13 @@
 
     <!-- 显示包括帖子的文字以及图片内容 -->
     <view class="sort-content-middle">
-        <view class="acticle-text">
+        <view class="acticle-title">
             <text>{{postDetail.title}}</text>
         </view>
+        <view class="acticle-text">
+          <text>{{postDetail.content}}</text>
+        </view>   
+
         <view class="acticle-image">
             <block wx:for="{{postDetail.images}}" wx:key="index">
                 <view class="show-image">

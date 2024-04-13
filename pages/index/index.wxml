@@ -59,8 +59,8 @@
 
         <!-- 分类标签 -->
         <scroll-view scroll-x class="sort-nav" scroll-with-animation enable-flex="true">
-            <view class="sort-nav-item" wx:for="{{sortList}}"  wx:key="index">
-                <image class="sort-nav-icon" src="{{item.icon}}" mode="widthFix" lazy-load="false"></image>
+            <view class="sort-nav-item" wx:for="{{sortList}}"  wx:key="index"  data-sortid="{{item.sortid}}"  >
+                <image class="sort-nav-icon" src="{{item.icon}}" mode="widthFix" lazy-load="false" catchtap="goTonewsort" data-parentTarget="{{item}}" ></image>
                 <text class="sort-nav-text">{{item.text}}</text>
                 <image class="down-selected"src="../../assets/images/sort/dwon.png"></image>
             </view>
@@ -75,15 +75,19 @@
                     <!-- 用户信息（头像、用户名等） -->
                     <view class="user-info">
                         <view class="user-photo">
-                            <image src="{{item.user.avatar}}" mode="widthFix"></image>
+                            <image src="{{item.user.avatar}}" mode="widthFix" ></image>
                         </view>
                         <view class="user-detail">
                             <view class="user-name">
                                 <text>{{item.user.nickName}}</text>
                             </view>
                             <view class="user-flag">
-                                <view class="article-sort">{{item.location.locationName}}</view>
-                                <view class="user-sex">{{item.user.sex === 0 ? '女' : '男'}}</view>                           
+                                <view class="article-location">{{item.location.locationName}}</view>
+                                <view class="user-sex">{{item.user.sex === 0 ? '女' : '男'}}</view>        
+                                <block wx:for="{{sortList}}"  wx:key="sortid" >
+                                 <view class="article-sort" wx:if= "{{item.sortid === currentsort}}">{{item.text}}</view>                        
+                                </block>
+                                                   
                             </view>
                         </view>
                         <view class="post-detail">

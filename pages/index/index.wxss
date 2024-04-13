@@ -242,6 +242,9 @@ page {
 }
 
 .article-sort{
+  background-color: rgb(150, 237, 243);
+}
+.article-location{
   background-color: burlywood;
 }
 

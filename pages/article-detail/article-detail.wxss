@@ -63,6 +63,9 @@
 }
 
 .article-sort{
+  background-color:rgb(150, 237, 243);
+}
+.article-location{
   background-color: burlywood;
 }
 
@@ -81,7 +84,7 @@
   text-align: center;
 }
 
-.acticle-text{
+.acticle-title{
   word-wrap: break-word;
   font-size: 33rpx;
   display: flex;
@@ -91,6 +94,20 @@
   flex-direction: column;
   letter-spacing: 2rpx;
 }
+
+.acticle-text{
+  word-wrap: break-word;
+  font-size: 28rpx;
+  display: flex;
+  text-align: left;
+  overflow: hidden;
+  margin-left: 2rpx;
+  flex-direction: column;
+  letter-spacing: 2rpx;
+}
+
+
+
 
 .acticle-image{
   display: flex;

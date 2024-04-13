@@ -8,6 +8,25 @@ Page({
    */
   data: {
     navH: 0,
+    sortList:[
+      {
+        icon: "../../assets/images/sort/news.png",
+        sortid: 1,
+        text:"最新发布"
+      },{
+        icon: "../../assets/images/sort/second-hand.png",
+        sortid: 2,
+        text:"问题求助"
+      },{
+        icon: "../../assets/images/sort/love-mood.png",
+        sortid: 3,
+        text:"经验分享"
+      },{
+        icon: "../../assets/images/sort/question-ask.png",
+        sortid: 4,
+        text:"专业知识"
+      },
+    ],
   },
 
   /**

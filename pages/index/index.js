@@ -31,6 +31,8 @@ Page({
       },
     ],
     posts: [],
+    currentpage: 1,
+    currentsort: 1,
   },
 
   /**
@@ -71,29 +73,8 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
-    httpGet({
-      url: '/community/topic/page/',
-      data: {
-        page: 1,
-        limit:10,
-        sort: 3
-      },
-      success: ({data}) => {
-        // 使用从服务器获取的帖子更新页面状态中的帖子数据
-        console.log(data)
-        data.data.forEach(element => {
-          element.createTime = new Date(element.createTime).toLocaleDateString()
-        });
-
-        this.setData({
-          posts: data.data,
-        });
-        
-      },
-      fail: (err) => {
-        console.error('获取帖子失败：', err);
-      },
-    });
+    
+    this.get_newposts(this.data.currentsort);
   },
 
   /**
@@ -121,7 +102,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.fresh_posts();
   },
 
   /**
@@ -153,6 +134,103 @@ Page({
     })
  
   },
+
+
+//获取新帖子
+get_newposts: function(sort){
+  wx.showLoading({
+    title: '加载中',  // 加载提示框的标题
+    mask: true,       // 是否显示透明蒙层
+  });
+  httpGet({
+      url: '/community/topic/page/',
+      data: {
+        page: 1,
+        limit:5,
+        sort: sort,
+      },
+      success: ({data}) => {
+        // 使用从服务器获取的帖子更新页面状态中的帖子数据
+        console.log(data)
+        data.data.forEach(element => {
+          element.createTime = new Date(element.createTime).toLocaleDateString()
+        });
+
+        this.setData({
+          posts: data.data,
+          currentsort:sort,
+        });
+        wx.hideLoading();
+        
+      },
+      fail: (err) => {
+        console.error('获取帖子失败：', err);
+        wx.hideLoading();
+      },
+    });
+
+
+},
+
+
+//刷新帖子
+fresh_posts: function(){
+  
+  wx.showLoading({
+    title: '加载中',  // 加载提示框的标题
+    mask: true,       // 是否显示透明蒙层
+  });
+  this.setData({
+    currentpage: this.data.currentpage + 1,
+  });
+
+  httpGet({
+    url: '/community/topic/page/',
+    data: {
+      page: this.data.currentpage,
+      limit:5,
+      sort: this.data.currentsort,
+    },
+    success: ({data}) => {
+      // 使用从服务器获取的帖子更新页面状态中的帖子数据
+      wx.hideLoading();
+      console.log(data)
+      data.data.forEach(element => {
+        element.createTime = new Date(element.createTime).toLocaleDateString()
+      });
+
+      this.setData({
+        posts: this.data.posts.concat(data.data),
+      });
+      
+    },
+    fail: (err) => {
+      console.error('获取帖子失败：', err);
+      wx.hideLoading();
+    },
+  });
+
+  
+},
+
+
+
+goTonewsort:function(event){
+// 获取被点击的图片所在的父级组件
+const sortId = event.target.dataset.parenttarget.sortid;
+// 从父级组件的自定义数据中获取 sortid
+  console.log(sortId);
+  this.setData({
+     currentsort: sortId  // 更新当前分类的状态变量
+    });
+
+    this.get_newposts(this.data.currentsort);
+
+
+},
+
+
+
 
 // 跳转到详情页面
 navigateToDetail: function (event) {
