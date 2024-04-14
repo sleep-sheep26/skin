@@ -16,7 +16,7 @@
 <view class="content" style="margin-top:{{navH*4+40}}rpx">
   <view class="sort-content-item">
     <!-- 显示个人信息（头像、名称等）、发表时间等 -->
-    <view class="sort-content-top" >
+    <view class="sort-content-top">
         <view class="user-info">
             <view class="user-photo">
                 <image src="{{postDetail.user.avatar}}" mode="widthFix"></image>

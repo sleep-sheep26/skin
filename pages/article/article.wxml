@@ -15,8 +15,19 @@
   <view class="content-input">
 
      <!-- 文本输入框 -->
-    <view>
-      <textarea class='text-input'
+     <view >
+      <textarea class="title-input"
+        autofocus
+        bindinput="bindtitle"
+        maxlength='200'
+        placeholder="请输入标题"
+        auto-height='{{true}}'         
+        />
+      <view class="line"></view>
+    </view>
+  
+    <view >
+      <textarea class="text-input"
         autofocus
         bindinput="bindContent"
         maxlength='200'
@@ -34,6 +45,7 @@
             data-imageId="{{index}}"
             bindtap="deleteImage"
           />
+
         </view>
         <image 
           src="{{item}}"
@@ -49,26 +61,10 @@
       </view>
     </view>
 
-    <!-- 对上传后的视频进行展示和处理 -->
-    <view class="video box" wx:if="{{ video && video.tempFilePath }}">
-      <view class="delete">
-        <image 
-          src="../../assets/images/send/del.png"
-          data-videoId="{{index}}"
-          bindtap="deleteVideo"
-        />
-      </view>
-      <video
-        src="{{video.tempFilePath}}"
-        object-fit="cover"
-        show-fullscreen-btn="{{false}}"
-      />    
-    </view>
-
+    
     <!-- 上传照片和视频 -->
     <view class="line"></view>
     <view class="toUpload">
-
       <!-- 图片 -->
       <view class="uploadIcon">
         <image
@@ -76,14 +72,9 @@
           bindtap="chooseImage" 
         />
       </view>
-
-      <!-- 视频 -->
-      <view class="uploadIcon">
-        <image 
-          src="../../assets/images/send/video.png"  bindtap="chooseVideo"
-        />
-      </view>
     </view>
+
+
 
     <!-- 位置选择 -->
     <view>
@@ -107,7 +98,6 @@
     <!-- 是否匿名 -->
     <view class="line"></view>
     <view class="switch ">
-      
       <view class="weui-cell__bd">匿名发布</view>
       <view class="weui-cell__ft" >
           <label class="weui-switch-cp">

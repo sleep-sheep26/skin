@@ -42,14 +42,14 @@
             <swiper class="swiper_message" circular vertical autoplay interval="5000" easing-function="easeInOutCubic" >
                 <swiper-item class="swiper-item-message">
                     <view class="message">                 
-                        <text class="message-name">非黑即白</text>
-                        <text class="message-content">我这个是怎么回事？</text>
+                        <text class="message-name">官方</text>
+                        <text class="message-content">小程序内测中......</text>
                     </view>
                 </swiper-item>
                 <swiper-item class="swiper-item-message">
                     <view class="message">
-                        <text class="message-name">震撼 </text>
-                        <text class="message-content">合肥有没有皮肤医院推荐？</text>
+                        <text class="message-name">官方</text>
+                        <text class="message-content">小程序内测中......</text>
                     </view>
                 </swiper-item>
             </swiper>

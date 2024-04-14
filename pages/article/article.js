@@ -1,5 +1,5 @@
 // pages/article/article.js
-const { uploadFiles } = require("../../utils/http");
+const { uploadFiles, httpPost } = require("../../utils/http");
 var app = getApp()
 Page({
 
@@ -12,17 +12,17 @@ Page({
       color: '#1890FF',
       tabColor: '#333' || '#20ACAB',
     },
+
     topic:{
-      sorts:
-      ["问题求助", "经验分享", "专业知识"],
+      sorts: ["问题求助", "经验分享", "专业知识"],
     selectd:0
     },
+    title:"",
     content:"",
     location: "",
     imageList: [],
     video:{},
     anonymous: false,
-    request_url: 'https://www.wolves.vip',
   },
 
   /**
@@ -48,51 +48,58 @@ Page({
 
   },
 
+
+bindtitle: function(e){
+  this.setData({content: e.detail.value})
+},
+  //获取输入的文字内容
   bindContent: function(e) {
     this.setData({content: e.detail.value})
   },
 
 
-  // 清空图片或视频
+  // 清空图片
   clearInput: function(name){
     if (name != 'imageList') {
       this.setData({ imageList: [] })
     }
-    if (name != 'video') {
-      this.setData({ video: {} })
-    }
   },
-
-
 
   // 照片相关处理
   chooseImage: async function(e){
     var that = this;
     let surplus = 9 - this.data.imageList.length
+
     wx.chooseMedia({
       count: surplus,
+      mediaType:['image'],
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
+      camera:'front',
+
       success: function(res){
         console.log('res', res)
         that.clearInput("imageList");
         let paths = res.tempFiles.map(el => el.tempFilePath)
-        paths.forEach( element =>  {
+        
+        paths.forEach( element =>  {       
           uploadFiles({
             files:[element],
             success({data}){
-              that.addNewImage(JSON.parse(data).data.urls);
+              that.addNewImage(data.data.urls);
             }
           })
+
         });
 
         console.log('paths', paths)
-        
+      
         wx.showToast({
           title: '上传成功！',
         })
       }
     })
+
   },
 
 
@@ -105,7 +112,6 @@ Page({
       imageList: list
     })
   },
-
 
 
   thisImage:function(e){
@@ -127,56 +133,12 @@ Page({
     })
   },
 
-  upImage: function(url) {
-    var that = this;
-    var imageList = that.data.imageList;
-    for (var i = 0; i < imageList.length; i++) {
-      wx.uploadFile({
-        url: that.data.request_url + '/upload_image', // 替换成服务器上传图片的接口地址
-        filePath: imageList[i],
-        name: 'image', // 与服务器约定的字段名
-        success(res) {
-          // 上传成功后的处理逻辑
-          console.log('图片上传成功', res.data);
-        },
-        fail(err) {
-          // 上传失败后的处理逻辑
-          console.error('图片上传失败', err);
-        }
-      })
-    }
-  },
-
-  // 视频相关处理
-  chooseVideo: function(e){
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success:(res)=>{
-        this.clearInput("video")
-        this.setData({
-          video:res
-        });
-        wx.showToast({
-          title: '上传成功！',
-        })
-      }
-    })
-  },
-
-  deleteVideo: function(e){
-    this.setData({
-      video:{}
-    })
-  },
-
   // 获取地理位置
-  
   chooseLocation:function(e){
     wx.showLoading({
       title: '正在加载',
     })
+
     wx.chooseLocation({
       success:(res)=>{
         wx.hideLoading({
@@ -225,6 +187,8 @@ Page({
 //上传内容
   submitData: function() {
     var that = this;
+    //获取用户输入的标题
+   var title = that.data.title;
     // 获取用户输入的内容
     var content = that.data.content;
     // 获取用户选择的地理位置
@@ -232,15 +196,14 @@ Page({
     // 获取用户是否匿名状态
     var anonymous = that.data.anonymous;
     
-    // 这里编写将以上数据上传至服务器的代码，可以使用 wx.request() 方法发送 POST 请求
     // 将 content、location、anonymous 等信息作为请求参数发送给服务器
-    wx.request({
-      url: that.data.request_url + '/submit_data', // 替换成服务器提交数据的接口地址
-      method: 'POST',
+    httpPost({
+      url: "/community/topic/save", // 替换成服务器提交数据的接口地址
       data: {
+        title: title,
         content: content,
         location: location,
-        anonymous: anonymous
+        anonymous: anonymous,
       },
       success(res) {
         // 请求成功后的处理逻辑
