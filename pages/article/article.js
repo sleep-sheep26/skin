@@ -1,5 +1,5 @@
 // pages/article/article.js
-const { uploadFiles, httpPost } = require("../../utils/http");
+const { uploadFiles, httpPost, httpGet } = require("../../utils/http");
 var app = getApp()
 Page({
 
@@ -50,7 +50,7 @@ Page({
 
 
 bindtitle: function(e){
-  this.setData({content: e.detail.value})
+  this.setData({title: e.detail.value})
 },
   //获取输入的文字内容
   bindContent: function(e) {
@@ -195,25 +195,30 @@ bindtitle: function(e){
     var location = that.data.location;
     // 获取用户是否匿名状态
     var anonymous = that.data.anonymous;
+    httpGet({url: '/community/user/', success: ({data})=>{
+          // 将 content、location、anonymous 等信息作为请求参数发送给服务器
+      httpPost({
+        url: "/community/topic/save", // 替换成服务器提交数据的接口地址
+        data: {
+          userId: data.data.userId,
+          title: title,
+          content: content,
+          location: location,
+          anonymous: anonymous,
+          imgs: this.data.imageList
+        },
+        success(res) {
+          // 请求成功后的处理逻辑
+          console.log('数据提交成功', res.data);
+        },
+        fail(err) {
+          // 请求失败后的处理逻辑
+          console.error('数据提交失败', err);
+        }
+      })
+    }})
     
-    // 将 content、location、anonymous 等信息作为请求参数发送给服务器
-    httpPost({
-      url: "/community/topic/save", // 替换成服务器提交数据的接口地址
-      data: {
-        title: title,
-        content: content,
-        location: location,
-        anonymous: anonymous,
-      },
-      success(res) {
-        // 请求成功后的处理逻辑
-        console.log('数据提交成功', res.data);
-      },
-      fail(err) {
-        // 请求失败后的处理逻辑
-        console.error('数据提交失败', err);
-      }
-    })
+
   },
 
 //返回键

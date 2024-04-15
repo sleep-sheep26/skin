@@ -133,6 +133,6 @@
       <span class="weui-agree__checkbox"></span>
       <span class="weui-agree__text">阅读并同意<navigator url="" class="weui-agree__link">《相关条款》</navigator></span>
   </label>
-    <a class="weui-btn weui-btn_primary confirm" >确认发布</a>
+    <a class="weui-btn weui-btn_primary confirm" bind:tap="submitData">确认发布</a>
   </view>
 </view>
