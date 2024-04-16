@@ -15,7 +15,7 @@ Page({
 
     topic:{
       sorts: ["问题求助", "经验分享", "专业知识"],
-    selectd:0
+      sort:2
     },
     title:"",
     content:"",
@@ -69,7 +69,7 @@ bindtitle: function(e){
   chooseImage: async function(e){
     var that = this;
     let surplus = 9 - this.data.imageList.length
-
+    
     wx.chooseMedia({
       count: surplus,
       mediaType:['image'],
@@ -176,9 +176,10 @@ bindtitle: function(e){
   // 发布的类型
   clickTag:function(e){
     console.log(e) 
-    let topicId = e.target.dataset.topicid;
+    let topicId = e.target.dataset.topicid + 2;
     let topic = this.data.topic;
-    topic.selected = topicId;
+    topic.sort = topicId;
+    console.log("id:",topic.topic.sort) 
     this.setData({
       topic
     })
@@ -195,6 +196,8 @@ bindtitle: function(e){
     var location = that.data.location;
     // 获取用户是否匿名状态
     var anonymous = that.data.anonymous;
+    console.log("that.data.topic.sort:",that.data.topic.sort);
+    console.log("that.data.imageList.length",that.data.imageList.length);
     httpGet({url: '/community/user/', success: ({data})=>{
           // 将 content、location、anonymous 等信息作为请求参数发送给服务器
       httpPost({
@@ -205,20 +208,32 @@ bindtitle: function(e){
           content: content,
           location: location,
           anonymous: anonymous,
-          imgs: this.data.imageList
+          imgs: that.data.imageList,
+          sort:that.data.topic.sort,
         },
         success(res) {
           // 请求成功后的处理逻辑
           console.log('数据提交成功', res.data);
+          wx.showToast({
+            title: '发布成功！',
+            icon: 'success',
+            duration: 2000//持续的时间
+          })
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
         },
         fail(err) {
           // 请求失败后的处理逻辑
           console.error('数据提交失败', err);
+          wx.showToast({
+            title: '发布失败！',
+            icon: 'error',
+            duration: 2000//持续的时间
+          })
         }
       })
     }})
-    
-
   },
 
 //返回键

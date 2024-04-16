@@ -69,7 +69,7 @@
     
     <!-- 分类具体的内容 -->
     <view class="sort-content"   >
-        <view wx:for="{{posts}}" bind:tap="navigateToDetail" data-topicId="{{item.topicId}}" wx:key="topicId" > 
+        <view wx:for="{{posts}}" bind:tap="navigateToDetail" data-topicid="{{item.topicId}}" wx:key="topicId" > 
             <view class="sort-content-item">
                 <view class="sort-content-top" >
                     <!-- 用户信息（头像、用户名等） -->
@@ -86,8 +86,7 @@
                                 <view class="user-sex">{{item.user.sex === 0 ? '女' : '男'}}</view>        
                                 <block wx:for="{{sortList}}"  wx:key="sortid" >
                                  <view class="article-sort" wx:if= "{{item.sortid === currentsort}}">{{item.text}}</view>                        
-                                </block>
-                                                   
+                                </block>                                                 
                             </view>
                         </view>
                         <view class="post-detail">
@@ -103,12 +102,12 @@
                 <!-- 帖子内容 -->
                 <view class="sort-content-middle">
                     <view class="acticle-text">
-                        <text>{{item.content}}</text>
+                        <text>{{item.title}}</text>
                     </view>
-                    <view class="acticle-image">
-                        <block wx:for="{{item.image}}" wx:key="index">
+                    <view class="acticle-image" wx:if="{{item.imgs.length != 0}}">
+                        <block wx:for="{{item.imgs}}" wx:key="index" wx:for-item ="imgsitem" >
                             <view class="show-image">
-                                <image src="{{item.image}}" mode="aspectfill"></image>
+                                <image src="{{imgsitem}}" mode="aspectfill"></image>
                             </view>
                         </block>
                     </view>

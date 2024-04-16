@@ -2,18 +2,18 @@
 
 /* 分类具体内容 */
 .content{
-  
   justify-content: center;
   margin: auto;
   margin-top: 10rpx;
-  
-
+  margin-bottom: 120rpx;
 }
+
 .sort-content-item{
   
   padding-bottom: 20rpx;
   border-bottom: 5rpx rgb(240, 242, 243) solid ;
 }
+
 .user-info{
   width: 88%;
   margin: auto;
@@ -322,3 +322,120 @@
 .post-time-mini{
   font-size: 25rpx;
 }
+
+/* 下方聊天栏*/
+.commentsInputLayout {
+
+  width: 100%;
+  
+  height: 100rpx;
+  
+  position: fixed;
+  
+  bottom: 0rpx;
+  
+  left: 0rpx;
+  
+  right: 0rpx;
+  
+  z-index: 20;
+  
+  display: -webkit-flex;
+  
+  display: flex;
+  
+  flex-direction: row;
+  
+  align-items: center;
+  
+  justify-content: center;
+  
+  background-color: #fff;
+  
+  /* 使之可以滚动 *//* overflow-y: scroll; *//* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+  
+  -webkit-overflow-scrolling: touch;
+  
+  }
+  
+  /** border-top必须设置，如不设置在部分机型上会出现定位不准问题*/
+  .commentsInput {
+  
+  width: auto;
+  
+  height: 100rpx;
+  
+  line-height: 100rpx;
+  
+  position: relative;
+  
+  flex: 1;
+  
+  padding-left: 30rpx;
+  
+  padding-right: 30rpx;
+  
+  font-size: 32rpx;
+  
+  word-break: break-all;
+  
+  word-wrap: break-word;
+  
+  color: #333;
+  
+  border-top: solid #f4f4f4 0.01rpx;
+  
+  background-color: #f4f4f4;
+  
+  z-index: 21;
+  
+  }
+  
+  /** border-top必须设置，如不设置在部分机型上会出现定位不准问题*/
+  
+  .commentsBtn {
+  
+  height: 100rpx;
+  
+  line-height: 100rpx;
+  
+  position: relative;
+  
+  font-size: 32rpx;
+  
+  color: #fff;
+  
+  border-top: solid #c7ceda 0.01rpx;
+  
+  padding-left: 30rpx;
+  
+  padding-right: 30rpx;
+  
+  background-color: #6181bd;
+  
+  z-index: 21;
+  
+  }
+
+
+  .commentsBtnlike {
+    width: 100rpx; /* 设置容器宽度 */
+    height: 100rpx; /* 设置容器高度 */
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    position: relative;
+    background-color: #ffffff; /* 设置容器背景颜色 */
+    z-index: 21;
+}
+
+.commentsBtnlike .icon {
+    width: 80%; /* 图片宽度占满容器 */
+    height: 80%; /* 图片高度占满容器 */
+    object-fit: contain; /* 图片填充方式，使图片完全填充容器 */
+}
+
+
+
+
+

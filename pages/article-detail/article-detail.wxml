@@ -12,6 +12,8 @@
     </view>
 </view>
 
+<view class='container'>
+<scroll-view scroll-y="{{true}}">
 <!-- 这里是帖子的详细页 -->
 <view class="content" style="margin-top:{{navH*4+40}}rpx">
   <view class="sort-content-item">
@@ -54,7 +56,7 @@
         </view>   
 
         <view class="acticle-image">
-            <block wx:for="{{postDetail.images}}" wx:key="index">
+            <block wx:for="{{postDetail.imgs}}" wx:key="index">
                 <view class="show-image">
                     <image src="{{item}}" mode="aspectfill"
                     data-imageId="{{index}}"
@@ -66,8 +68,8 @@
     <!-- 底部包括点赞、收藏、评论 -->
     <view class="sort-content-bottom">
         <view class="like">
-            <image src="../../assets/images/article/unlike.png" class="bottom-img"></image>
-            <text class="action-desc">{{postDetail.likes}}</text>
+            <image src="{{ isLiked ? '../../assets/images/article/like.png' : '../../assets/images/article/unlike.png' }}" class="bottom-img"></image>
+            <text class="action-desc">{{likenums}}</text>
         </view>
         <view class="collect">
             <image src="../../assets/images/article/collect.png" class="bottom-img"></image>
@@ -119,4 +121,22 @@
       </view>
   </view>
 </view>
+</scroll-view>
+
+<view class='commentsInputLayout' wx:if="!{{isimgInfoShow}}" style="bottom:{{keyboardHeight}}px">
+
+<input value='{{commentsContent}}' type='text' maxlength='100' class='commentsInput' placeholder='请输入评论内容（100字以内）' placeholder-class='phcolor' 
+bindinput='inputCommentsContentListening' bindfocus="inputCommentsFocus" bindblur="inputCommentsBlur"></input>
+
+<text class='commentsBtn' bindtap='clickComments'>评论</text>
+
+<view class="commentsBtnlike">
+    <image class="icon" src="{{ isLiked ? '../../assets/images/article/like.png' : '../../assets/images/article/unlike.png' }}" bind:tap="toggleLike"></image> 
+</view>
+</view>
+
+</view>
+
+
+
 

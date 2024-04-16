@@ -73,7 +73,6 @@ Page({
     this.setData({
       navH: app.globalData.navHeight
     });
-    
     this.get_newposts(this.data.currentsort);
   },
 
@@ -235,7 +234,7 @@ const sortId = event.target.dataset.parenttarget.sortid;
 // 跳转到详情页面
 navigateToDetail: function (event) {
   const dataset = event.currentTarget.dataset; // 获取点击的帖子信息
-  console.log(dataset);
+  console.log("获取到的帖子信息2：",dataset);
   wx.navigateTo({
     url: '/pages/article-detail/article-detail?postId=' + dataset.topicid,
   });

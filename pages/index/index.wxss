@@ -189,7 +189,6 @@ page {
 
 }
 .sort-content-item{
-  
   padding-bottom: 20rpx;
   border-bottom: 5rpx rgb(240, 242, 243) solid ;
 }
